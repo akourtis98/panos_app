@@ -1,0 +1,16 @@
+extends layout
+
+block content
+<<<<<<< HEAD
+  h1 #{title}
+  ul.list-group
+    each article, i in articles
+      li.list-group-item
+        a(href="/articles/"+article._id)= article.title
+=======
+    h1 #{title}
+    ul.list-group
+        each article, i in articles
+            li.list-group-item
+                a(href="/articles/"+article._id)= article.title
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
