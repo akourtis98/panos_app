@@ -1,8 +1,12 @@
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const pug = require('pug');
+const bodyParser = require('body-parser');
+const expressValidator = require('express-validator');
+const flash = require('connect-flash');
+const session = require('express-session');
+const passport = require('passport');
+const config = require('./config/database');
 
 mongoose.connect('mongodb://localhost/nodekb');
 let db = mongoose.connection;
@@ -23,7 +27,6 @@ const app = express();
 // bring in model
 let Article = require('./models/article');
 
-
 app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'pug');
@@ -34,35 +37,57 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-// set public folder
-app.use(express.static(path.join(__dirname + '/public')));
 
-// submit post route
-app.post('/articles/add', (req, res) => {
-    let article = new Article();
+// express session middleware
+app.use(session({
+    secret: 'alex',
+    resave: false,
+    saveUnitialized: true,
+    cookie: {secure: true}
+}));
 
-    article.title = req.body.title;
-    article.author = req.body.author;
-    article.date = req.body.date;
-    article.body = req.body.body;
-
-    console.log(req.body.title);
-
-    article.save( err => {
-        if(err){
-            console.log(err);
-        }else{
-            res.redirect('/');
-        }
-    });
+// Express Messages Middleware
+app.use(require('connect-flash')());
+app.use(function (req, res, next) {
+    res.locals.messages = require('express-messages')(req, res);
+    next();
 });
 
+// passport config
+require('./config/passport')(passport);
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get('*', function(req, res, next){
+    res.locals.user = req.user || null;
+    next();
+});
+
+// express validator middleware
+app.use(expressValidator({
+    errorFormatter: function(param, msg, value) {
+        var namespace = param.split('.')
+        , root    = namespace.shift()
+        , formParam = root;
+
+    while(namespace.length) {
+        formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+        param : formParam,
+        msg   : msg,
+        value : value
+        };
+    }
+}));
+
 // home route
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
     Article.find({}, (err, articles) => {
-        if(err){
+        if (err) {
             console.log(err);
-        }else{
+        } else {
             res.render('index', {
                 title: 'Articles',
                 articles: articles
@@ -70,6 +95,13 @@ app.get('/', (req, res) => {
         }
     });
 });
+
+// routes
+let articles = require('./routes/articles');
+app.use('/articles', articles);
+
+// set public folder
+app.use(express.static(path.join(__dirname + '/public')));
 
 // start server
 app.listen(3000, () => {
