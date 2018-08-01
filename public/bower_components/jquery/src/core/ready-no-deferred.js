@@ -1,7 +1,13 @@
 define( [
 	"../core",
+<<<<<<< HEAD
 	"../var/document"
 ], function( jQuery, document ) {
+=======
+	"../var/document",
+	"../var/isFunction"
+], function( jQuery, document, isFunction ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 "use strict";
 
@@ -52,7 +58,11 @@ jQuery.extend( {
 
 			while ( readyCallbacks.length ) {
 				fn = readyCallbacks.shift();
+<<<<<<< HEAD
 				if ( jQuery.isFunction( fn ) ) {
+=======
+				if ( isFunction( fn ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 					executeReady( fn );
 				}
 			}

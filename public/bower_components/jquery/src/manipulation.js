@@ -1,6 +1,10 @@
 define( [
 	"./core",
 	"./var/concat",
+<<<<<<< HEAD
+=======
+	"./var/isFunction",
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	"./var/push",
 	"./core/access",
 	"./manipulation/var/rcheckableType",
@@ -22,7 +26,11 @@ define( [
 	"./traversing",
 	"./selector",
 	"./event"
+<<<<<<< HEAD
 ], function( jQuery, concat, push, access,
+=======
+], function( jQuery, concat, isFunction, push, access,
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	rcheckableType, rtagName, rscriptType,
 	wrapMap, getAll, setGlobalEval, buildFragment, support,
 	dataPriv, dataUser, acceptData, DOMEval, nodeName ) {
@@ -38,14 +46,21 @@ var
 
 	/* eslint-enable */
 
+<<<<<<< HEAD
 	// Support: IE <=10 - 11, Edge 12 - 13
+=======
+	// Support: IE <=10 - 11, Edge 12 - 13 only
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	// In IE/Edge using regex groups here causes severe slowdowns.
 	// See https://connect.microsoft.com/IE/feedback/details/1736512/
 	rnoInnerhtml = /<script|<style|<link/i,
 
 	// checked="checked" or checked
 	rchecked = /checked\s*(?:[^=]|=\s*.checked.)/i,
+<<<<<<< HEAD
 	rscriptTypeMasked = /^true\/(.*)/,
+=======
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	rcleanScript = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
 
 // Prefer a tbody over its parent table for containing new rows
@@ -53,7 +68,11 @@ function manipulationTarget( elem, content ) {
 	if ( nodeName( elem, "table" ) &&
 		nodeName( content.nodeType !== 11 ? content : content.firstChild, "tr" ) ) {
 
+<<<<<<< HEAD
 		return jQuery( ">tbody", elem )[ 0 ] || elem;
+=======
+		return jQuery( elem ).children( "tbody" )[ 0 ] || elem;
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	}
 
 	return elem;
@@ -65,10 +84,15 @@ function disableScript( elem ) {
 	return elem;
 }
 function restoreScript( elem ) {
+<<<<<<< HEAD
 	var match = rscriptTypeMasked.exec( elem.type );
 
 	if ( match ) {
 		elem.type = match[ 1 ];
+=======
+	if ( ( elem.type || "" ).slice( 0, 5 ) === "true/" ) {
+		elem.type = elem.type.slice( 5 );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	} else {
 		elem.removeAttribute( "type" );
 	}
@@ -134,15 +158,26 @@ function domManip( collection, args, callback, ignored ) {
 		l = collection.length,
 		iNoClone = l - 1,
 		value = args[ 0 ],
+<<<<<<< HEAD
 		isFunction = jQuery.isFunction( value );
 
 	// We can't cloneNode fragments that contain checked, in WebKit
 	if ( isFunction ||
+=======
+		valueIsFunction = isFunction( value );
+
+	// We can't cloneNode fragments that contain checked, in WebKit
+	if ( valueIsFunction ||
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			( l > 1 && typeof value === "string" &&
 				!support.checkClone && rchecked.test( value ) ) ) {
 		return collection.each( function( index ) {
 			var self = collection.eq( index );
+<<<<<<< HEAD
 			if ( isFunction ) {
+=======
+			if ( valueIsFunction ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 				args[ 0 ] = value.call( this, index, self.html() );
 			}
 			domManip( self, args, callback, ignored );
@@ -196,14 +231,22 @@ function domManip( collection, args, callback, ignored ) {
 						!dataPriv.access( node, "globalEval" ) &&
 						jQuery.contains( doc, node ) ) {
 
+<<<<<<< HEAD
 						if ( node.src ) {
+=======
+						if ( node.src && ( node.type || "" ).toLowerCase()  !== "module" ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 							// Optional AJAX dependency, but won't run scripts if not present
 							if ( jQuery._evalUrl ) {
 								jQuery._evalUrl( node.src );
 							}
 						} else {
+<<<<<<< HEAD
 							DOMEval( node.textContent.replace( rcleanScript, "" ), doc );
+=======
+							DOMEval( node.textContent.replace( rcleanScript, "" ), doc, node );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 						}
 					}
 				}

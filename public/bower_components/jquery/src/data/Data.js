@@ -1,8 +1,15 @@
 define( [
 	"../core",
+<<<<<<< HEAD
 	"../var/rnothtmlwhite",
 	"./var/acceptData"
 ], function( jQuery, rnothtmlwhite, acceptData ) {
+=======
+	"../core/camelCase",
+	"../var/rnothtmlwhite",
+	"./var/acceptData"
+], function( jQuery, camelCase, rnothtmlwhite, acceptData ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 "use strict";
 
@@ -54,14 +61,22 @@ Data.prototype = {
 		// Handle: [ owner, key, value ] args
 		// Always use camelCase key (gh-2257)
 		if ( typeof data === "string" ) {
+<<<<<<< HEAD
 			cache[ jQuery.camelCase( data ) ] = value;
+=======
+			cache[ camelCase( data ) ] = value;
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 		// Handle: [ owner, { properties } ] args
 		} else {
 
 			// Copy the properties one-by-one to the cache object
 			for ( prop in data ) {
+<<<<<<< HEAD
 				cache[ jQuery.camelCase( prop ) ] = data[ prop ];
+=======
+				cache[ camelCase( prop ) ] = data[ prop ];
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			}
 		}
 		return cache;
@@ -71,7 +86,11 @@ Data.prototype = {
 			this.cache( owner ) :
 
 			// Always use camelCase key (gh-2257)
+<<<<<<< HEAD
 			owner[ this.expando ] && owner[ this.expando ][ jQuery.camelCase( key ) ];
+=======
+			owner[ this.expando ] && owner[ this.expando ][ camelCase( key ) ];
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	},
 	access: function( owner, key, value ) {
 
@@ -119,9 +138,15 @@ Data.prototype = {
 
 				// If key is an array of keys...
 				// We always set camelCase keys, so remove that.
+<<<<<<< HEAD
 				key = key.map( jQuery.camelCase );
 			} else {
 				key = jQuery.camelCase( key );
+=======
+				key = key.map( camelCase );
+			} else {
+				key = camelCase( key );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 				// If a key with the spaces exists, use it.
 				// Otherwise, create an array by matching non-whitespace

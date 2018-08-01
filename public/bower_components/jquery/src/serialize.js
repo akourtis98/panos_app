@@ -1,10 +1,20 @@
 define( [
 	"./core",
+<<<<<<< HEAD
 	"./manipulation/var/rcheckableType",
 	"./core/init",
 	"./traversing", // filter
 	"./attributes/prop"
 ], function( jQuery, rcheckableType ) {
+=======
+	"./core/toType",
+	"./manipulation/var/rcheckableType",
+	"./var/isFunction",
+	"./core/init",
+	"./traversing", // filter
+	"./attributes/prop"
+], function( jQuery, toType, rcheckableType, isFunction ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 "use strict";
 
@@ -38,7 +48,11 @@ function buildParams( prefix, obj, traditional, add ) {
 			}
 		} );
 
+<<<<<<< HEAD
 	} else if ( !traditional && jQuery.type( obj ) === "object" ) {
+=======
+	} else if ( !traditional && toType( obj ) === "object" ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 		// Serialize object item.
 		for ( name in obj ) {
@@ -60,7 +74,11 @@ jQuery.param = function( a, traditional ) {
 		add = function( key, valueOrFunction ) {
 
 			// If value is a function, invoke it and use its return value
+<<<<<<< HEAD
 			var value = jQuery.isFunction( valueOrFunction ) ?
+=======
+			var value = isFunction( valueOrFunction ) ?
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 				valueOrFunction() :
 				valueOrFunction;
 

@@ -1,5 +1,9 @@
 /*!
+<<<<<<< HEAD
  * jQuery JavaScript Library v3.2.1 -ajax,-ajax/jsonp,-ajax/load,-ajax/parseXML,-ajax/script,-ajax/var/location,-ajax/var/nonce,-ajax/var/rquery,-ajax/xhr,-manipulation/_evalUrl,-event/ajax,-effects,-effects/Tween,-effects/animatedSelector
+=======
+ * jQuery JavaScript Library v3.3.1 -ajax,-ajax/jsonp,-ajax/load,-ajax/parseXML,-ajax/script,-ajax/var/location,-ajax/var/nonce,-ajax/var/rquery,-ajax/xhr,-manipulation/_evalUrl,-event/ajax,-effects,-effects/Tween,-effects/animatedSelector
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
  * https://jquery.com/
  *
  * Includes Sizzle.js
@@ -9,7 +13,11 @@
  * Released under the MIT license
  * https://jquery.org/license
  *
+<<<<<<< HEAD
  * Date: 2017-03-20T19:00Z
+=======
+ * Date: 2018-01-20T17:24Z
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
  */
 ( function( global, factory ) {
 
@@ -71,6 +79,7 @@ var ObjectFunctionString = fnToString.call( Object );
 
 var support = {};
 
+<<<<<<< HEAD
 
 
 	function DOMEval( code, doc ) {
@@ -81,6 +90,59 @@ var support = {};
 		script.text = code;
 		doc.head.appendChild( script ).parentNode.removeChild( script );
 	}
+=======
+var isFunction = function isFunction( obj ) {
+
+      // Support: Chrome <=57, Firefox <=52
+      // In some browsers, typeof returns "function" for HTML <object> elements
+      // (i.e., `typeof document.createElement( "object" ) === "function"`).
+      // We don't want to classify *any* DOM node as a function.
+      return typeof obj === "function" && typeof obj.nodeType !== "number";
+  };
+
+
+var isWindow = function isWindow( obj ) {
+		return obj != null && obj === obj.window;
+	};
+
+
+
+
+	var preservedScriptAttributes = {
+		type: true,
+		src: true,
+		noModule: true
+	};
+
+	function DOMEval( code, doc, node ) {
+		doc = doc || document;
+
+		var i,
+			script = doc.createElement( "script" );
+
+		script.text = code;
+		if ( node ) {
+			for ( i in preservedScriptAttributes ) {
+				if ( node[ i ] ) {
+					script[ i ] = node[ i ];
+				}
+			}
+		}
+		doc.head.appendChild( script ).parentNode.removeChild( script );
+	}
+
+
+function toType( obj ) {
+	if ( obj == null ) {
+		return obj + "";
+	}
+
+	// Support: Android <=2.3 only (functionish RegExp)
+	return typeof obj === "object" || typeof obj === "function" ?
+		class2type[ toString.call( obj ) ] || "object" :
+		typeof obj;
+}
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 /* global Symbol */
 // Defining this global in .eslintrc.json would create a danger of using the global
 // unguarded in another place, it seems safer to define global only for this module
@@ -88,7 +150,11 @@ var support = {};
 
 
 var
+<<<<<<< HEAD
 	version = "3.2.1 -ajax,-ajax/jsonp,-ajax/load,-ajax/parseXML,-ajax/script,-ajax/var/location,-ajax/var/nonce,-ajax/var/rquery,-ajax/xhr,-manipulation/_evalUrl,-event/ajax,-effects,-effects/Tween,-effects/animatedSelector",
+=======
+	version = "3.3.1 -ajax,-ajax/jsonp,-ajax/load,-ajax/parseXML,-ajax/script,-ajax/var/location,-ajax/var/nonce,-ajax/var/rquery,-ajax/xhr,-manipulation/_evalUrl,-event/ajax,-effects,-effects/Tween,-effects/animatedSelector",
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -100,6 +166,7 @@ var
 
 	// Support: Android <=4.0 only
 	// Make sure we trim BOM and NBSP
+<<<<<<< HEAD
 	rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,
 
 	// Matches dashed string for camelizing
@@ -110,6 +177,9 @@ var
 	fcamelCase = function( all, letter ) {
 		return letter.toUpperCase();
 	};
+=======
+	rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 jQuery.fn = jQuery.prototype = {
 
@@ -209,7 +279,11 @@ jQuery.extend = jQuery.fn.extend = function() {
 	}
 
 	// Handle case when target is a string or something (possible in deep copy)
+<<<<<<< HEAD
 	if ( typeof target !== "object" && !jQuery.isFunction( target ) ) {
+=======
+	if ( typeof target !== "object" && !isFunction( target ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		target = {};
 	}
 
@@ -275,6 +349,7 @@ jQuery.extend( {
 
 	noop: function() {},
 
+<<<<<<< HEAD
 	isFunction: function( obj ) {
 		return jQuery.type( obj ) === "function";
 	},
@@ -297,6 +372,8 @@ jQuery.extend( {
 			!isNaN( obj - parseFloat( obj ) );
 	},
 
+=======
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	isPlainObject: function( obj ) {
 		var proto, Ctor;
 
@@ -330,6 +407,7 @@ jQuery.extend( {
 		return true;
 	},
 
+<<<<<<< HEAD
 	type: function( obj ) {
 		if ( obj == null ) {
 			return obj + "";
@@ -341,11 +419,14 @@ jQuery.extend( {
 			typeof obj;
 	},
 
+=======
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	// Evaluates a script in a global context
 	globalEval: function( code ) {
 		DOMEval( code );
 	},
 
+<<<<<<< HEAD
 	// Convert dashed to camelCase; used by the css and data modules
 	// Support: IE <=9 - 11, Edge 12 - 13
 	// Microsoft forgot to hump their vendor prefix (#9572)
@@ -353,6 +434,8 @@ jQuery.extend( {
 		return string.replace( rmsPrefix, "ms-" ).replace( rdashAlpha, fcamelCase );
 	},
 
+=======
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	each: function( obj, callback ) {
 		var length, i = 0;
 
@@ -473,6 +556,7 @@ jQuery.extend( {
 	// A global GUID counter for objects
 	guid: 1,
 
+<<<<<<< HEAD
 	// Bind a function to a context, optionally partially applying any
 	// arguments.
 	proxy: function( fn, context ) {
@@ -504,6 +588,8 @@ jQuery.extend( {
 
 	now: Date.now,
 
+=======
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	// jQuery.support is not used in Core but other projects attach their
 	// properties to it so it needs to exist.
 	support: support
@@ -526,9 +612,15 @@ function isArrayLike( obj ) {
 	// hasOwn isn't used here due to false negatives
 	// regarding Nodelist length in IE
 	var length = !!obj && "length" in obj && obj.length,
+<<<<<<< HEAD
 		type = jQuery.type( obj );
 
 	if ( type === "function" || jQuery.isWindow( obj ) ) {
+=======
+		type = toType( obj );
+
+	if ( isFunction( obj ) || isWindow( obj ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		return false;
 	}
 
@@ -2848,11 +2940,17 @@ var rsingleTag = ( /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|
 
 
 
+<<<<<<< HEAD
 var risSimple = /^.[^:#\[\.,]*$/;
 
 // Implement the identical functionality for filter and not
 function winnow( elements, qualifier, not ) {
 	if ( jQuery.isFunction( qualifier ) ) {
+=======
+// Implement the identical functionality for filter and not
+function winnow( elements, qualifier, not ) {
+	if ( isFunction( qualifier ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		return jQuery.grep( elements, function( elem, i ) {
 			return !!qualifier.call( elem, i, elem ) !== not;
 		} );
@@ -2872,6 +2970,7 @@ function winnow( elements, qualifier, not ) {
 		} );
 	}
 
+<<<<<<< HEAD
 	// Simple selector that can be filtered directly, removing non-Elements
 	if ( risSimple.test( qualifier ) ) {
 		return jQuery.filter( qualifier, elements, not );
@@ -2882,6 +2981,10 @@ function winnow( elements, qualifier, not ) {
 	return jQuery.grep( elements, function( elem ) {
 		return ( indexOf.call( qualifier, elem ) > -1 ) !== not && elem.nodeType === 1;
 	} );
+=======
+	// Filtered directly for both simple and complex selectors
+	return jQuery.filter( qualifier, elements, not );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 }
 
 jQuery.filter = function( expr, elems, not ) {
@@ -3002,7 +3105,11 @@ var rootjQuery,
 						for ( match in context ) {
 
 							// Properties of context are called as methods if possible
+<<<<<<< HEAD
 							if ( jQuery.isFunction( this[ match ] ) ) {
+=======
+							if ( isFunction( this[ match ] ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 								this[ match ]( context[ match ] );
 
 							// ...and otherwise set as attributes
@@ -3045,7 +3152,11 @@ var rootjQuery,
 
 		// HANDLE: $(function)
 		// Shortcut for document ready
+<<<<<<< HEAD
 		} else if ( jQuery.isFunction( selector ) ) {
+=======
+		} else if ( isFunction( selector ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			return root.ready !== undefined ?
 				root.ready( selector ) :
 
@@ -3360,11 +3471,19 @@ jQuery.Callbacks = function( options ) {
 
 					( function add( args ) {
 						jQuery.each( args, function( _, arg ) {
+<<<<<<< HEAD
 							if ( jQuery.isFunction( arg ) ) {
 								if ( !options.unique || !self.has( arg ) ) {
 									list.push( arg );
 								}
 							} else if ( arg && arg.length && jQuery.type( arg ) !== "string" ) {
+=======
+							if ( isFunction( arg ) ) {
+								if ( !options.unique || !self.has( arg ) ) {
+									list.push( arg );
+								}
+							} else if ( arg && arg.length && toType( arg ) !== "string" ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 								// Inspect recursively
 								add( arg );
@@ -3479,11 +3598,19 @@ function adoptValue( value, resolve, reject, noValue ) {
 	try {
 
 		// Check for promise aspect first to privilege synchronous behavior
+<<<<<<< HEAD
 		if ( value && jQuery.isFunction( ( method = value.promise ) ) ) {
 			method.call( value ).done( resolve ).fail( reject );
 
 		// Other thenables
 		} else if ( value && jQuery.isFunction( ( method = value.then ) ) ) {
+=======
+		if ( value && isFunction( ( method = value.promise ) ) ) {
+			method.call( value ).done( resolve ).fail( reject );
+
+		// Other thenables
+		} else if ( value && isFunction( ( method = value.then ) ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			method.call( value, resolve, reject );
 
 		// Other non-thenables
@@ -3541,14 +3668,22 @@ jQuery.extend( {
 						jQuery.each( tuples, function( i, tuple ) {
 
 							// Map tuples (progress, done, fail) to arguments (done, fail, progress)
+<<<<<<< HEAD
 							var fn = jQuery.isFunction( fns[ tuple[ 4 ] ] ) && fns[ tuple[ 4 ] ];
+=======
+							var fn = isFunction( fns[ tuple[ 4 ] ] ) && fns[ tuple[ 4 ] ];
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 							// deferred.progress(function() { bind to newDefer or newDefer.notify })
 							// deferred.done(function() { bind to newDefer or newDefer.resolve })
 							// deferred.fail(function() { bind to newDefer or newDefer.reject })
 							deferred[ tuple[ 1 ] ]( function() {
 								var returned = fn && fn.apply( this, arguments );
+<<<<<<< HEAD
 								if ( returned && jQuery.isFunction( returned.promise ) ) {
+=======
+								if ( returned && isFunction( returned.promise ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 									returned.promise()
 										.progress( newDefer.notify )
 										.done( newDefer.resolve )
@@ -3602,7 +3737,11 @@ jQuery.extend( {
 										returned.then;
 
 									// Handle a returned thenable
+<<<<<<< HEAD
 									if ( jQuery.isFunction( then ) ) {
+=======
+									if ( isFunction( then ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 										// Special processors (notify) just wait for resolution
 										if ( special ) {
@@ -3698,7 +3837,11 @@ jQuery.extend( {
 							resolve(
 								0,
 								newDefer,
+<<<<<<< HEAD
 								jQuery.isFunction( onProgress ) ?
+=======
+								isFunction( onProgress ) ?
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 									onProgress :
 									Identity,
 								newDefer.notifyWith
@@ -3710,7 +3853,11 @@ jQuery.extend( {
 							resolve(
 								0,
 								newDefer,
+<<<<<<< HEAD
 								jQuery.isFunction( onFulfilled ) ?
+=======
+								isFunction( onFulfilled ) ?
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 									onFulfilled :
 									Identity
 							)
@@ -3721,7 +3868,11 @@ jQuery.extend( {
 							resolve(
 								0,
 								newDefer,
+<<<<<<< HEAD
 								jQuery.isFunction( onRejected ) ?
+=======
+								isFunction( onRejected ) ?
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 									onRejected :
 									Thrower
 							)
@@ -3761,8 +3912,20 @@ jQuery.extend( {
 					// fulfilled_callbacks.disable
 					tuples[ 3 - i ][ 2 ].disable,
 
+<<<<<<< HEAD
 					// progress_callbacks.lock
 					tuples[ 0 ][ 2 ].lock
+=======
+					// rejected_handlers.disable
+					// fulfilled_handlers.disable
+					tuples[ 3 - i ][ 3 ].disable,
+
+					// progress_callbacks.lock
+					tuples[ 0 ][ 2 ].lock,
+
+					// progress_handlers.lock
+					tuples[ 0 ][ 3 ].lock
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 				);
 			}
 
@@ -3832,7 +3995,11 @@ jQuery.extend( {
 
 			// Use .then() to unwrap secondary thenables (cf. gh-3000)
 			if ( master.state() === "pending" ||
+<<<<<<< HEAD
 				jQuery.isFunction( resolveValues[ i ] && resolveValues[ i ].then ) ) {
+=======
+				isFunction( resolveValues[ i ] && resolveValues[ i ].then ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 				return master.then();
 			}
@@ -3960,7 +4127,11 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 		bulk = key == null;
 
 	// Sets many values
+<<<<<<< HEAD
 	if ( jQuery.type( key ) === "object" ) {
+=======
+	if ( toType( key ) === "object" ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		chainable = true;
 		for ( i in key ) {
 			access( elems, fn, i, key[ i ], true, emptyGet, raw );
@@ -3970,7 +4141,11 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 	} else if ( value !== undefined ) {
 		chainable = true;
 
+<<<<<<< HEAD
 		if ( !jQuery.isFunction( value ) ) {
+=======
+		if ( !isFunction( value ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			raw = true;
 		}
 
@@ -4012,6 +4187,26 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 
 	return len ? fn( elems[ 0 ], key ) : emptyGet;
 };
+<<<<<<< HEAD
+=======
+
+
+// Matches dashed string for camelizing
+var rmsPrefix = /^-ms-/,
+	rdashAlpha = /-([a-z])/g;
+
+// Used by camelCase as callback to replace()
+function fcamelCase( all, letter ) {
+	return letter.toUpperCase();
+}
+
+// Convert dashed to camelCase; used by the css and data modules
+// Support: IE <=9 - 11, Edge 12 - 15
+// Microsoft forgot to hump their vendor prefix (#9572)
+function camelCase( string ) {
+	return string.replace( rmsPrefix, "ms-" ).replace( rdashAlpha, fcamelCase );
+}
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 var acceptData = function( owner ) {
 
 	// Accepts only:
@@ -4074,14 +4269,22 @@ Data.prototype = {
 		// Handle: [ owner, key, value ] args
 		// Always use camelCase key (gh-2257)
 		if ( typeof data === "string" ) {
+<<<<<<< HEAD
 			cache[ jQuery.camelCase( data ) ] = value;
+=======
+			cache[ camelCase( data ) ] = value;
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 		// Handle: [ owner, { properties } ] args
 		} else {
 
 			// Copy the properties one-by-one to the cache object
 			for ( prop in data ) {
+<<<<<<< HEAD
 				cache[ jQuery.camelCase( prop ) ] = data[ prop ];
+=======
+				cache[ camelCase( prop ) ] = data[ prop ];
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			}
 		}
 		return cache;
@@ -4091,7 +4294,11 @@ Data.prototype = {
 			this.cache( owner ) :
 
 			// Always use camelCase key (gh-2257)
+<<<<<<< HEAD
 			owner[ this.expando ] && owner[ this.expando ][ jQuery.camelCase( key ) ];
+=======
+			owner[ this.expando ] && owner[ this.expando ][ camelCase( key ) ];
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	},
 	access: function( owner, key, value ) {
 
@@ -4139,9 +4346,15 @@ Data.prototype = {
 
 				// If key is an array of keys...
 				// We always set camelCase keys, so remove that.
+<<<<<<< HEAD
 				key = key.map( jQuery.camelCase );
 			} else {
 				key = jQuery.camelCase( key );
+=======
+				key = key.map( camelCase );
+			} else {
+				key = camelCase( key );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 				// If a key with the spaces exists, use it.
 				// Otherwise, create an array by matching non-whitespace
@@ -4287,7 +4500,11 @@ jQuery.fn.extend( {
 						if ( attrs[ i ] ) {
 							name = attrs[ i ].name;
 							if ( name.indexOf( "data-" ) === 0 ) {
+<<<<<<< HEAD
 								name = jQuery.camelCase( name.slice( 5 ) );
+=======
+								name = camelCase( name.slice( 5 ) );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 								dataAttr( elem, name, data[ name ] );
 							}
 						}
@@ -4534,8 +4751,12 @@ var swap = function( elem, options, callback, args ) {
 
 
 function adjustCSS( elem, prop, valueParts, tween ) {
+<<<<<<< HEAD
 	var adjusted,
 		scale = 1,
+=======
+	var adjusted, scale,
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		maxIterations = 20,
 		currentValue = tween ?
 			function() {
@@ -4553,6 +4774,7 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 
 	if ( initialInUnit && initialInUnit[ 3 ] !== unit ) {
 
+<<<<<<< HEAD
 		// Trust units reported by jQuery.css
 		unit = unit || initialInUnit[ 3 ];
 
@@ -4577,6 +4799,35 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 		} while (
 			scale !== ( scale = currentValue() / initial ) && scale !== 1 && --maxIterations
 		);
+=======
+		// Support: Firefox <=54
+		// Halve the iteration target value to prevent interference from CSS upper bounds (gh-2144)
+		initial = initial / 2;
+
+		// Trust units reported by jQuery.css
+		unit = unit || initialInUnit[ 3 ];
+
+		// Iteratively approximate from a nonzero starting point
+		initialInUnit = +initial || 1;
+
+		while ( maxIterations-- ) {
+
+			// Evaluate and update our best guess (doubling guesses that zero out).
+			// Finish if the scale equals or crosses 1 (making the old*new product non-positive).
+			jQuery.style( elem, prop, initialInUnit + unit );
+			if ( ( 1 - scale ) * ( 1 - ( scale = currentValue() / initial || 0.5 ) ) <= 0 ) {
+				maxIterations = 0;
+			}
+			initialInUnit = initialInUnit / scale;
+
+		}
+
+		initialInUnit = initialInUnit * 2;
+		jQuery.style( elem, prop, initialInUnit + unit );
+
+		// Make sure we update the tween properties later on
+		valueParts = valueParts || [];
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	}
 
 	if ( valueParts ) {
@@ -4694,7 +4945,11 @@ var rcheckableType = ( /^(?:checkbox|radio)$/i );
 
 var rtagName = ( /<([a-z][^\/\0>\x20\t\r\n\f]+)/i );
 
+<<<<<<< HEAD
 var rscriptType = ( /^$|\/(?:java|ecma)script/i );
+=======
+var rscriptType = ( /^$|^module$|\/(?:java|ecma)script/i );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 
 
@@ -4776,7 +5031,11 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 		if ( elem || elem === 0 ) {
 
 			// Add nodes directly
+<<<<<<< HEAD
 			if ( jQuery.type( elem ) === "object" ) {
+=======
+			if ( toType( elem ) === "object" ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 				// Support: Android <=4.0 only, PhantomJS 1 only
 				// push.apply(_, arraylike) throws on ancient WebKit
@@ -5286,7 +5545,11 @@ jQuery.event = {
 			enumerable: true,
 			configurable: true,
 
+<<<<<<< HEAD
 			get: jQuery.isFunction( hook ) ?
+=======
+			get: isFunction( hook ) ?
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 				function() {
 					if ( this.originalEvent ) {
 							return hook( this.originalEvent );
@@ -5421,7 +5684,11 @@ jQuery.Event = function( src, props ) {
 	}
 
 	// Create a timestamp if incoming event doesn't have one
+<<<<<<< HEAD
 	this.timeStamp = src && src.timeStamp || jQuery.now();
+=======
+	this.timeStamp = src && src.timeStamp || Date.now();
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 	// Mark it as fixed
 	this[ jQuery.expando ] = true;
@@ -5620,14 +5887,21 @@ var
 
 	/* eslint-enable */
 
+<<<<<<< HEAD
 	// Support: IE <=10 - 11, Edge 12 - 13
+=======
+	// Support: IE <=10 - 11, Edge 12 - 13 only
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	// In IE/Edge using regex groups here causes severe slowdowns.
 	// See https://connect.microsoft.com/IE/feedback/details/1736512/
 	rnoInnerhtml = /<script|<style|<link/i,
 
 	// checked="checked" or checked
 	rchecked = /checked\s*(?:[^=]|=\s*.checked.)/i,
+<<<<<<< HEAD
 	rscriptTypeMasked = /^true\/(.*)/,
+=======
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	rcleanScript = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
 
 // Prefer a tbody over its parent table for containing new rows
@@ -5635,7 +5909,11 @@ function manipulationTarget( elem, content ) {
 	if ( nodeName( elem, "table" ) &&
 		nodeName( content.nodeType !== 11 ? content : content.firstChild, "tr" ) ) {
 
+<<<<<<< HEAD
 		return jQuery( ">tbody", elem )[ 0 ] || elem;
+=======
+		return jQuery( elem ).children( "tbody" )[ 0 ] || elem;
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	}
 
 	return elem;
@@ -5647,10 +5925,15 @@ function disableScript( elem ) {
 	return elem;
 }
 function restoreScript( elem ) {
+<<<<<<< HEAD
 	var match = rscriptTypeMasked.exec( elem.type );
 
 	if ( match ) {
 		elem.type = match[ 1 ];
+=======
+	if ( ( elem.type || "" ).slice( 0, 5 ) === "true/" ) {
+		elem.type = elem.type.slice( 5 );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	} else {
 		elem.removeAttribute( "type" );
 	}
@@ -5716,15 +5999,26 @@ function domManip( collection, args, callback, ignored ) {
 		l = collection.length,
 		iNoClone = l - 1,
 		value = args[ 0 ],
+<<<<<<< HEAD
 		isFunction = jQuery.isFunction( value );
 
 	// We can't cloneNode fragments that contain checked, in WebKit
 	if ( isFunction ||
+=======
+		valueIsFunction = isFunction( value );
+
+	// We can't cloneNode fragments that contain checked, in WebKit
+	if ( valueIsFunction ||
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			( l > 1 && typeof value === "string" &&
 				!support.checkClone && rchecked.test( value ) ) ) {
 		return collection.each( function( index ) {
 			var self = collection.eq( index );
+<<<<<<< HEAD
 			if ( isFunction ) {
+=======
+			if ( valueIsFunction ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 				args[ 0 ] = value.call( this, index, self.html() );
 			}
 			domManip( self, args, callback, ignored );
@@ -5778,14 +6072,22 @@ function domManip( collection, args, callback, ignored ) {
 						!dataPriv.access( node, "globalEval" ) &&
 						jQuery.contains( doc, node ) ) {
 
+<<<<<<< HEAD
 						if ( node.src ) {
+=======
+						if ( node.src && ( node.type || "" ).toLowerCase()  !== "module" ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 							// Optional AJAX dependency, but won't run scripts if not present
 							if ( jQuery._evalUrl ) {
 								jQuery._evalUrl( node.src );
 							}
 						} else {
+<<<<<<< HEAD
 							DOMEval( node.textContent.replace( rcleanScript, "" ), doc );
+=======
+							DOMEval( node.textContent.replace( rcleanScript, "" ), doc, node );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 						}
 					}
 				}
@@ -6065,8 +6367,11 @@ jQuery.each( {
 		return this.pushStack( ret );
 	};
 } );
+<<<<<<< HEAD
 var rmargin = ( /^margin/ );
 
+=======
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 var rnumnonpx = new RegExp( "^(" + pnum + ")(?!px)[a-z%]+$", "i" );
 
 var getStyles = function( elem ) {
@@ -6083,6 +6388,11 @@ var getStyles = function( elem ) {
 		return view.getComputedStyle( elem );
 	};
 
+<<<<<<< HEAD
+=======
+var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
+
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 
 ( function() {
@@ -6096,6 +6406,7 @@ var getStyles = function( elem ) {
 			return;
 		}
 
+<<<<<<< HEAD
 		div.style.cssText =
 			"box-sizing:border-box;" +
 			"position:relative;display:block;" +
@@ -6103,11 +6414,21 @@ var getStyles = function( elem ) {
 			"top:1%;width:50%";
 		div.innerHTML = "";
 		documentElement.appendChild( container );
+=======
+		container.style.cssText = "position:absolute;left:-11111px;width:60px;" +
+			"margin-top:1px;padding:0;border:0";
+		div.style.cssText =
+			"position:relative;display:block;box-sizing:border-box;overflow:scroll;" +
+			"margin:auto;border:1px;padding:1px;" +
+			"width:60%;top:1%";
+		documentElement.appendChild( container ).appendChild( div );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 		var divStyle = window.getComputedStyle( div );
 		pixelPositionVal = divStyle.top !== "1%";
 
 		// Support: Android 4.0 - 4.3 only, Firefox <=3 - 44
+<<<<<<< HEAD
 		reliableMarginLeftVal = divStyle.marginLeft === "2px";
 		boxSizingReliableVal = divStyle.width === "4px";
 
@@ -6115,6 +6436,23 @@ var getStyles = function( elem ) {
 		// Some styles come back with percentage values, even though they shouldn't
 		div.style.marginRight = "50%";
 		pixelMarginRightVal = divStyle.marginRight === "4px";
+=======
+		reliableMarginLeftVal = roundPixelMeasures( divStyle.marginLeft ) === 12;
+
+		// Support: Android 4.0 - 4.3 only, Safari <=9.1 - 10.1, iOS <=7.0 - 9.3
+		// Some styles come back with percentage values, even though they shouldn't
+		div.style.right = "60%";
+		pixelBoxStylesVal = roundPixelMeasures( divStyle.right ) === 36;
+
+		// Support: IE 9 - 11 only
+		// Detect misreporting of content dimensions for box-sizing:border-box elements
+		boxSizingReliableVal = roundPixelMeasures( divStyle.width ) === 36;
+
+		// Support: IE 9 only
+		// Detect overflow:scroll screwiness (gh-3699)
+		div.style.position = "absolute";
+		scrollboxSizeVal = div.offsetWidth === 36 || "absolute";
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 		documentElement.removeChild( container );
 
@@ -6123,7 +6461,16 @@ var getStyles = function( elem ) {
 		div = null;
 	}
 
+<<<<<<< HEAD
 	var pixelPositionVal, boxSizingReliableVal, pixelMarginRightVal, reliableMarginLeftVal,
+=======
+	function roundPixelMeasures( measure ) {
+		return Math.round( parseFloat( measure ) );
+	}
+
+	var pixelPositionVal, boxSizingReliableVal, scrollboxSizeVal, pixelBoxStylesVal,
+		reliableMarginLeftVal,
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		container = document.createElement( "div" ),
 		div = document.createElement( "div" );
 
@@ -6138,6 +6485,7 @@ var getStyles = function( elem ) {
 	div.cloneNode( true ).style.backgroundClip = "";
 	support.clearCloneStyle = div.style.backgroundClip === "content-box";
 
+<<<<<<< HEAD
 	container.style.cssText = "border:0;width:8px;height:0;top:0;left:-9999px;" +
 		"padding:0;margin-top:1px;position:absolute";
 	container.appendChild( div );
@@ -6147,17 +6495,37 @@ var getStyles = function( elem ) {
 			computeStyleTests();
 			return pixelPositionVal;
 		},
+=======
+	jQuery.extend( support, {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		boxSizingReliable: function() {
 			computeStyleTests();
 			return boxSizingReliableVal;
 		},
+<<<<<<< HEAD
 		pixelMarginRight: function() {
 			computeStyleTests();
 			return pixelMarginRightVal;
+=======
+		pixelBoxStyles: function() {
+			computeStyleTests();
+			return pixelBoxStylesVal;
+		},
+		pixelPosition: function() {
+			computeStyleTests();
+			return pixelPositionVal;
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		},
 		reliableMarginLeft: function() {
 			computeStyleTests();
 			return reliableMarginLeftVal;
+<<<<<<< HEAD
+=======
+		},
+		scrollboxSize: function() {
+			computeStyleTests();
+			return scrollboxSizeVal;
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		}
 	} );
 } )();
@@ -6189,7 +6557,11 @@ function curCSS( elem, name, computed ) {
 		// but width seems to be reliably pixels.
 		// This is against the CSSOM draft spec:
 		// https://drafts.csswg.org/cssom/#resolved-values
+<<<<<<< HEAD
 		if ( !support.pixelMarginRight() && rnumnonpx.test( ret ) && rmargin.test( name ) ) {
+=======
+		if ( !support.pixelBoxStyles() && rnumnonpx.test( ret ) && rboxStyle.test( name ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 			// Remember the original values
 			width = style.width;
@@ -6294,6 +6666,7 @@ function setPositiveNumber( elem, value, subtract ) {
 		value;
 }
 
+<<<<<<< HEAD
 function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
 	var i,
 		val = 0;
@@ -6305,10 +6678,21 @@ function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
 	// Otherwise initialize for horizontal or vertical properties
 	} else {
 		i = name === "width" ? 1 : 0;
+=======
+function boxModelAdjustment( elem, dimension, box, isBorderBox, styles, computedVal ) {
+	var i = dimension === "width" ? 1 : 0,
+		extra = 0,
+		delta = 0;
+
+	// Adjustment may not be necessary
+	if ( box === ( isBorderBox ? "border" : "content" ) ) {
+		return 0;
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	}
 
 	for ( ; i < 4; i += 2 ) {
 
+<<<<<<< HEAD
 		// Both box models exclude margin, so add it if we want it
 		if ( extra === "margin" ) {
 			val += jQuery.css( elem, extra + cssExpand[ i ], true, styles );
@@ -6333,10 +6717,45 @@ function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
 			// At this point, extra isn't content nor padding, so add border
 			if ( extra !== "padding" ) {
 				val += jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+=======
+		// Both box models exclude margin
+		if ( box === "margin" ) {
+			delta += jQuery.css( elem, box + cssExpand[ i ], true, styles );
+		}
+
+		// If we get here with a content-box, we're seeking "padding" or "border" or "margin"
+		if ( !isBorderBox ) {
+
+			// Add padding
+			delta += jQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
+
+			// For "border" or "margin", add border
+			if ( box !== "padding" ) {
+				delta += jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+
+			// But still keep track of it otherwise
+			} else {
+				extra += jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+			}
+
+		// If we get here with a border-box (content + padding + border), we're seeking "content" or
+		// "padding" or "margin"
+		} else {
+
+			// For "content", subtract padding
+			if ( box === "content" ) {
+				delta -= jQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
+			}
+
+			// For "content" or "padding", subtract border
+			if ( box !== "margin" ) {
+				delta -= jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			}
 		}
 	}
 
+<<<<<<< HEAD
 	return val;
 }
 
@@ -6351,10 +6770,45 @@ function getWidthOrHeight( elem, name, extra ) {
 	// Computed unit is not pixels. Stop here and return.
 	if ( rnumnonpx.test( val ) ) {
 		return val;
+=======
+	// Account for positive content-box scroll gutter when requested by providing computedVal
+	if ( !isBorderBox && computedVal >= 0 ) {
+
+		// offsetWidth/offsetHeight is a rounded sum of content, padding, scroll gutter, and border
+		// Assuming integer scroll gutter, subtract the rest and round down
+		delta += Math.max( 0, Math.ceil(
+			elem[ "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 ) ] -
+			computedVal -
+			delta -
+			extra -
+			0.5
+		) );
+	}
+
+	return delta;
+}
+
+function getWidthOrHeight( elem, dimension, extra ) {
+
+	// Start with computed style
+	var styles = getStyles( elem ),
+		val = curCSS( elem, dimension, styles ),
+		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box",
+		valueIsBorderBox = isBorderBox;
+
+	// Support: Firefox <=54
+	// Return a confounding non-pixel value or feign ignorance, as appropriate.
+	if ( rnumnonpx.test( val ) ) {
+		if ( !extra ) {
+			return val;
+		}
+		val = "auto";
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	}
 
 	// Check for style in case a browser which returns unreliable values
 	// for getComputedStyle silently falls back to the reliable elem.style
+<<<<<<< HEAD
 	valueIsBorderBox = isBorderBox &&
 		( support.boxSizingReliable() || val === elem.style[ name ] );
 
@@ -6375,6 +6829,38 @@ function getWidthOrHeight( elem, name, extra ) {
 			extra || ( isBorderBox ? "border" : "content" ),
 			valueIsBorderBox,
 			styles
+=======
+	valueIsBorderBox = valueIsBorderBox &&
+		( support.boxSizingReliable() || val === elem.style[ dimension ] );
+
+	// Fall back to offsetWidth/offsetHeight when value is "auto"
+	// This happens for inline elements with no explicit setting (gh-3571)
+	// Support: Android <=4.1 - 4.3 only
+	// Also use offsetWidth/offsetHeight for misreported inline dimensions (gh-3602)
+	if ( val === "auto" ||
+		!parseFloat( val ) && jQuery.css( elem, "display", false, styles ) === "inline" ) {
+
+		val = elem[ "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 ) ];
+
+		// offsetWidth/offsetHeight provide border-box values
+		valueIsBorderBox = true;
+	}
+
+	// Normalize "" and auto
+	val = parseFloat( val ) || 0;
+
+	// Adjust for the element's box model
+	return ( val +
+		boxModelAdjustment(
+			elem,
+			dimension,
+			extra || ( isBorderBox ? "border" : "content" ),
+			valueIsBorderBox,
+			styles,
+
+			// Provide the current computed size to request scroll gutter calculation (gh-3589)
+			val
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		)
 	) + "px";
 }
@@ -6415,9 +6901,13 @@ jQuery.extend( {
 
 	// Add in properties whose names you wish to fix before
 	// setting or getting the value
+<<<<<<< HEAD
 	cssProps: {
 		"float": "cssFloat"
 	},
+=======
+	cssProps: {},
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 	// Get and set the style property on a DOM Node
 	style: function( elem, name, value, extra ) {
@@ -6429,7 +6919,11 @@ jQuery.extend( {
 
 		// Make sure that we're working with the right name
 		var ret, type, hooks,
+<<<<<<< HEAD
 			origName = jQuery.camelCase( name ),
+=======
+			origName = camelCase( name ),
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			isCustomProp = rcustomProp.test( name ),
 			style = elem.style;
 
@@ -6497,7 +6991,11 @@ jQuery.extend( {
 
 	css: function( elem, name, extra, styles ) {
 		var val, num, hooks,
+<<<<<<< HEAD
 			origName = jQuery.camelCase( name ),
+=======
+			origName = camelCase( name ),
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			isCustomProp = rcustomProp.test( name );
 
 		// Make sure that we're working with the right name. We don't
@@ -6535,8 +7033,13 @@ jQuery.extend( {
 	}
 } );
 
+<<<<<<< HEAD
 jQuery.each( [ "height", "width" ], function( i, name ) {
 	jQuery.cssHooks[ name ] = {
+=======
+jQuery.each( [ "height", "width" ], function( i, dimension ) {
+	jQuery.cssHooks[ dimension ] = {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		get: function( elem, computed, extra ) {
 			if ( computed ) {
 
@@ -6552,14 +7055,21 @@ jQuery.each( [ "height", "width" ], function( i, name ) {
 					// in IE throws an error.
 					( !elem.getClientRects().length || !elem.getBoundingClientRect().width ) ?
 						swap( elem, cssShow, function() {
+<<<<<<< HEAD
 							return getWidthOrHeight( elem, name, extra );
 						} ) :
 						getWidthOrHeight( elem, name, extra );
+=======
+							return getWidthOrHeight( elem, dimension, extra );
+						} ) :
+						getWidthOrHeight( elem, dimension, extra );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			}
 		},
 
 		set: function( elem, value, extra ) {
 			var matches,
+<<<<<<< HEAD
 				styles = extra && getStyles( elem ),
 				subtract = extra && augmentWidthOrHeight(
 					elem,
@@ -6569,12 +7079,40 @@ jQuery.each( [ "height", "width" ], function( i, name ) {
 					styles
 				);
 
+=======
+				styles = getStyles( elem ),
+				isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box",
+				subtract = extra && boxModelAdjustment(
+					elem,
+					dimension,
+					extra,
+					isBorderBox,
+					styles
+				);
+
+			// Account for unreliable border-box dimensions by comparing offset* to computed and
+			// faking a content-box to get border and padding (gh-3699)
+			if ( isBorderBox && support.scrollboxSize() === styles.position ) {
+				subtract -= Math.ceil(
+					elem[ "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 ) ] -
+					parseFloat( styles[ dimension ] ) -
+					boxModelAdjustment( elem, dimension, "border", false, styles ) -
+					0.5
+				);
+			}
+
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			// Convert to pixels if value adjustment is needed
 			if ( subtract && ( matches = rcssNum.exec( value ) ) &&
 				( matches[ 3 ] || "px" ) !== "px" ) {
 
+<<<<<<< HEAD
 				elem.style[ name ] = value;
 				value = jQuery.css( elem, name );
+=======
+				elem.style[ dimension ] = value;
+				value = jQuery.css( elem, dimension );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			}
 
 			return setPositiveNumber( elem, value, subtract );
@@ -6618,7 +7156,11 @@ jQuery.each( {
 		}
 	};
 
+<<<<<<< HEAD
 	if ( !rmargin.test( prefix ) ) {
+=======
+	if ( prefix !== "margin" ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		jQuery.cssHooks[ prefix + suffix ].set = setPositiveNumber;
 	}
 } );
@@ -6957,7 +7499,11 @@ jQuery.each( [
 
 
 	// Strip and collapse whitespace according to HTML spec
+<<<<<<< HEAD
 	// https://html.spec.whatwg.org/multipage/infrastructure.html#strip-and-collapse-whitespace
+=======
+	// https://infra.spec.whatwg.org/#strip-and-collapse-ascii-whitespace
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	function stripAndCollapse( value ) {
 		var tokens = value.match( rnothtmlwhite ) || [];
 		return tokens.join( " " );
@@ -6968,20 +7514,43 @@ function getClass( elem ) {
 	return elem.getAttribute && elem.getAttribute( "class" ) || "";
 }
 
+<<<<<<< HEAD
+=======
+function classesToArray( value ) {
+	if ( Array.isArray( value ) ) {
+		return value;
+	}
+	if ( typeof value === "string" ) {
+		return value.match( rnothtmlwhite ) || [];
+	}
+	return [];
+}
+
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 jQuery.fn.extend( {
 	addClass: function( value ) {
 		var classes, elem, cur, curValue, clazz, j, finalValue,
 			i = 0;
 
+<<<<<<< HEAD
 		if ( jQuery.isFunction( value ) ) {
+=======
+		if ( isFunction( value ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			return this.each( function( j ) {
 				jQuery( this ).addClass( value.call( this, j, getClass( this ) ) );
 			} );
 		}
 
+<<<<<<< HEAD
 		if ( typeof value === "string" && value ) {
 			classes = value.match( rnothtmlwhite ) || [];
 
+=======
+		classes = classesToArray( value );
+
+		if ( classes.length ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			while ( ( elem = this[ i++ ] ) ) {
 				curValue = getClass( elem );
 				cur = elem.nodeType === 1 && ( " " + stripAndCollapse( curValue ) + " " );
@@ -7010,7 +7579,11 @@ jQuery.fn.extend( {
 		var classes, elem, cur, curValue, clazz, j, finalValue,
 			i = 0;
 
+<<<<<<< HEAD
 		if ( jQuery.isFunction( value ) ) {
+=======
+		if ( isFunction( value ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			return this.each( function( j ) {
 				jQuery( this ).removeClass( value.call( this, j, getClass( this ) ) );
 			} );
@@ -7020,9 +7593,15 @@ jQuery.fn.extend( {
 			return this.attr( "class", "" );
 		}
 
+<<<<<<< HEAD
 		if ( typeof value === "string" && value ) {
 			classes = value.match( rnothtmlwhite ) || [];
 
+=======
+		classes = classesToArray( value );
+
+		if ( classes.length ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			while ( ( elem = this[ i++ ] ) ) {
 				curValue = getClass( elem );
 
@@ -7052,6 +7631,7 @@ jQuery.fn.extend( {
 	},
 
 	toggleClass: function( value, stateVal ) {
+<<<<<<< HEAD
 		var type = typeof value;
 
 		if ( typeof stateVal === "boolean" && type === "string" ) {
@@ -7059,6 +7639,16 @@ jQuery.fn.extend( {
 		}
 
 		if ( jQuery.isFunction( value ) ) {
+=======
+		var type = typeof value,
+			isValidValue = type === "string" || Array.isArray( value );
+
+		if ( typeof stateVal === "boolean" && isValidValue ) {
+			return stateVal ? this.addClass( value ) : this.removeClass( value );
+		}
+
+		if ( isFunction( value ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			return this.each( function( i ) {
 				jQuery( this ).toggleClass(
 					value.call( this, i, getClass( this ), stateVal ),
@@ -7070,12 +7660,20 @@ jQuery.fn.extend( {
 		return this.each( function() {
 			var className, i, self, classNames;
 
+<<<<<<< HEAD
 			if ( type === "string" ) {
+=======
+			if ( isValidValue ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 				// Toggle individual class names
 				i = 0;
 				self = jQuery( this );
+<<<<<<< HEAD
 				classNames = value.match( rnothtmlwhite ) || [];
+=======
+				classNames = classesToArray( value );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 				while ( ( className = classNames[ i++ ] ) ) {
 
@@ -7134,7 +7732,11 @@ var rreturn = /\r/g;
 
 jQuery.fn.extend( {
 	val: function( value ) {
+<<<<<<< HEAD
 		var hooks, ret, isFunction,
+=======
+		var hooks, ret, valueIsFunction,
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			elem = this[ 0 ];
 
 		if ( !arguments.length ) {
@@ -7163,7 +7765,11 @@ jQuery.fn.extend( {
 			return;
 		}
 
+<<<<<<< HEAD
 		isFunction = jQuery.isFunction( value );
+=======
+		valueIsFunction = isFunction( value );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 		return this.each( function( i ) {
 			var val;
@@ -7172,7 +7778,11 @@ jQuery.fn.extend( {
 				return;
 			}
 
+<<<<<<< HEAD
 			if ( isFunction ) {
+=======
+			if ( valueIsFunction ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 				val = value.call( this, i, jQuery( this ).val() );
 			} else {
 				val = value;
@@ -7314,18 +7924,36 @@ jQuery.each( [ "radio", "checkbox" ], function() {
 // Return jQuery for attributes-only inclusion
 
 
+<<<<<<< HEAD
 var rfocusMorph = /^(?:focusinfocus|focusoutblur)$/;
+=======
+support.focusin = "onfocusin" in window;
+
+
+var rfocusMorph = /^(?:focusinfocus|focusoutblur)$/,
+	stopPropagationCallback = function( e ) {
+		e.stopPropagation();
+	};
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 jQuery.extend( jQuery.event, {
 
 	trigger: function( event, data, elem, onlyHandlers ) {
 
+<<<<<<< HEAD
 		var i, cur, tmp, bubbleType, ontype, handle, special,
+=======
+		var i, cur, tmp, bubbleType, ontype, handle, special, lastElement,
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			eventPath = [ elem || document ],
 			type = hasOwn.call( event, "type" ) ? event.type : event,
 			namespaces = hasOwn.call( event, "namespace" ) ? event.namespace.split( "." ) : [];
 
+<<<<<<< HEAD
 		cur = tmp = elem = elem || document;
+=======
+		cur = lastElement = tmp = elem = elem || document;
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 		// Don't do events on text and comment nodes
 		if ( elem.nodeType === 3 || elem.nodeType === 8 ) {
@@ -7377,7 +8005,11 @@ jQuery.extend( jQuery.event, {
 
 		// Determine event propagation path in advance, per W3C events spec (#9951)
 		// Bubble up to document, then to window; watch for a global ownerDocument var (#9724)
+<<<<<<< HEAD
 		if ( !onlyHandlers && !special.noBubble && !jQuery.isWindow( elem ) ) {
+=======
+		if ( !onlyHandlers && !special.noBubble && !isWindow( elem ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 			bubbleType = special.delegateType || type;
 			if ( !rfocusMorph.test( bubbleType + type ) ) {
@@ -7397,7 +8029,11 @@ jQuery.extend( jQuery.event, {
 		// Fire handlers on the event path
 		i = 0;
 		while ( ( cur = eventPath[ i++ ] ) && !event.isPropagationStopped() ) {
+<<<<<<< HEAD
 
+=======
+			lastElement = cur;
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			event.type = i > 1 ?
 				bubbleType :
 				special.bindType || type;
@@ -7429,7 +8065,11 @@ jQuery.extend( jQuery.event, {
 
 				// Call a native DOM method on the target with the same name as the event.
 				// Don't do default actions on window, that's where global variables be (#6170)
+<<<<<<< HEAD
 				if ( ontype && jQuery.isFunction( elem[ type ] ) && !jQuery.isWindow( elem ) ) {
+=======
+				if ( ontype && isFunction( elem[ type ] ) && !isWindow( elem ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 					// Don't re-trigger an onFOO event when we call its FOO() method
 					tmp = elem[ ontype ];
@@ -7440,7 +8080,21 @@ jQuery.extend( jQuery.event, {
 
 					// Prevent re-triggering of the same event, since we already bubbled it above
 					jQuery.event.triggered = type;
+<<<<<<< HEAD
 					elem[ type ]();
+=======
+
+					if ( event.isPropagationStopped() ) {
+						lastElement.addEventListener( type, stopPropagationCallback );
+					}
+
+					elem[ type ]();
+
+					if ( event.isPropagationStopped() ) {
+						lastElement.removeEventListener( type, stopPropagationCallback );
+					}
+
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 					jQuery.event.triggered = undefined;
 
 					if ( tmp ) {
@@ -7486,6 +8140,7 @@ jQuery.fn.extend( {
 } );
 
 
+<<<<<<< HEAD
 jQuery.each( ( "blur focus focusin focusout resize scroll click dblclick " +
 	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
 	"change select submit keydown keypress keyup contextmenu" ).split( " " ),
@@ -7511,6 +8166,8 @@ jQuery.fn.extend( {
 support.focusin = "onfocusin" in window;
 
 
+=======
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 // Support: Firefox <=44
 // Firefox doesn't have focus(in | out) events
 // Related ticket - https://bugzilla.mozilla.org/show_bug.cgi?id=687787
@@ -7584,7 +8241,11 @@ function buildParams( prefix, obj, traditional, add ) {
 			}
 		} );
 
+<<<<<<< HEAD
 	} else if ( !traditional && jQuery.type( obj ) === "object" ) {
+=======
+	} else if ( !traditional && toType( obj ) === "object" ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 		// Serialize object item.
 		for ( name in obj ) {
@@ -7606,7 +8267,11 @@ jQuery.param = function( a, traditional ) {
 		add = function( key, valueOrFunction ) {
 
 			// If value is a function, invoke it and use its return value
+<<<<<<< HEAD
 			var value = jQuery.isFunction( valueOrFunction ) ?
+=======
+			var value = isFunction( valueOrFunction ) ?
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 				valueOrFunction() :
 				valueOrFunction;
 
@@ -7678,7 +8343,11 @@ jQuery.fn.extend( {
 		var wrap;
 
 		if ( this[ 0 ] ) {
+<<<<<<< HEAD
 			if ( jQuery.isFunction( html ) ) {
+=======
+			if ( isFunction( html ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 				html = html.call( this[ 0 ] );
 			}
 
@@ -7704,7 +8373,11 @@ jQuery.fn.extend( {
 	},
 
 	wrapInner: function( html ) {
+<<<<<<< HEAD
 		if ( jQuery.isFunction( html ) ) {
+=======
+		if ( isFunction( html ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			return this.each( function( i ) {
 				jQuery( this ).wrapInner( html.call( this, i ) );
 			} );
@@ -7724,10 +8397,17 @@ jQuery.fn.extend( {
 	},
 
 	wrap: function( html ) {
+<<<<<<< HEAD
 		var isFunction = jQuery.isFunction( html );
 
 		return this.each( function( i ) {
 			jQuery( this ).wrapAll( isFunction ? html.call( this, i ) : html );
+=======
+		var htmlIsFunction = isFunction( html );
+
+		return this.each( function( i ) {
+			jQuery( this ).wrapAll( htmlIsFunction ? html.call( this, i ) : html );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		} );
 	},
 
@@ -7843,7 +8523,11 @@ jQuery.offset = {
 			curLeft = parseFloat( curCSSLeft ) || 0;
 		}
 
+<<<<<<< HEAD
 		if ( jQuery.isFunction( options ) ) {
+=======
+		if ( isFunction( options ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 			// Use jQuery.extend here to allow modification of coordinates argument (gh-1848)
 			options = options.call( elem, i, jQuery.extend( {}, curOffset ) );
@@ -7866,6 +8550,11 @@ jQuery.offset = {
 };
 
 jQuery.fn.extend( {
+<<<<<<< HEAD
+=======
+
+	// offset() relates an element's border box to the document origin
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	offset: function( options ) {
 
 		// Preserve chaining for setter
@@ -7877,7 +8566,11 @@ jQuery.fn.extend( {
 				} );
 		}
 
+<<<<<<< HEAD
 		var doc, docElem, rect, win,
+=======
+		var rect, win,
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			elem = this[ 0 ];
 
 		if ( !elem ) {
@@ -7892,6 +8585,7 @@ jQuery.fn.extend( {
 			return { top: 0, left: 0 };
 		}
 
+<<<<<<< HEAD
 		rect = elem.getBoundingClientRect();
 
 		doc = elem.ownerDocument;
@@ -7904,11 +8598,25 @@ jQuery.fn.extend( {
 		};
 	},
 
+=======
+		// Get document-relative position by adding viewport scroll to viewport-relative gBCR
+		rect = elem.getBoundingClientRect();
+		win = elem.ownerDocument.defaultView;
+		return {
+			top: rect.top + win.pageYOffset,
+			left: rect.left + win.pageXOffset
+		};
+	},
+
+	// position() relates an element's margin box to its offset parent's padding box
+	// This corresponds to the behavior of CSS absolute positioning
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	position: function() {
 		if ( !this[ 0 ] ) {
 			return;
 		}
 
+<<<<<<< HEAD
 		var offsetParent, offset,
 			elem = this[ 0 ],
 			parentOffset = { top: 0, left: 0 };
@@ -7936,6 +8644,38 @@ jQuery.fn.extend( {
 				top: parentOffset.top + jQuery.css( offsetParent[ 0 ], "borderTopWidth", true ),
 				left: parentOffset.left + jQuery.css( offsetParent[ 0 ], "borderLeftWidth", true )
 			};
+=======
+		var offsetParent, offset, doc,
+			elem = this[ 0 ],
+			parentOffset = { top: 0, left: 0 };
+
+		// position:fixed elements are offset from the viewport, which itself always has zero offset
+		if ( jQuery.css( elem, "position" ) === "fixed" ) {
+
+			// Assume position:fixed implies availability of getBoundingClientRect
+			offset = elem.getBoundingClientRect();
+
+		} else {
+			offset = this.offset();
+
+			// Account for the *real* offset parent, which can be the document or its root element
+			// when a statically positioned element is identified
+			doc = elem.ownerDocument;
+			offsetParent = elem.offsetParent || doc.documentElement;
+			while ( offsetParent &&
+				( offsetParent === doc.body || offsetParent === doc.documentElement ) &&
+				jQuery.css( offsetParent, "position" ) === "static" ) {
+
+				offsetParent = offsetParent.parentNode;
+			}
+			if ( offsetParent && offsetParent !== elem && offsetParent.nodeType === 1 ) {
+
+				// Incorporate borders into its offset, since they are outside its content origin
+				parentOffset = jQuery( offsetParent ).offset();
+				parentOffset.top += jQuery.css( offsetParent, "borderTopWidth", true );
+				parentOffset.left += jQuery.css( offsetParent, "borderLeftWidth", true );
+			}
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		}
 
 		// Subtract parent offsets and element margins
@@ -7977,7 +8717,11 @@ jQuery.each( { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function( 
 
 			// Coalesce documents and windows
 			var win;
+<<<<<<< HEAD
 			if ( jQuery.isWindow( elem ) ) {
+=======
+			if ( isWindow( elem ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 				win = elem;
 			} else if ( elem.nodeType === 9 ) {
 				win = elem.defaultView;
@@ -8035,7 +8779,11 @@ jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 			return access( this, function( elem, type, value ) {
 				var doc;
 
+<<<<<<< HEAD
 				if ( jQuery.isWindow( elem ) ) {
+=======
+				if ( isWindow( elem ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 					// $( window ).outerWidth/Height return w/h including scrollbars (gh-1729)
 					return funcName.indexOf( "outer" ) === 0 ?
@@ -8069,6 +8817,31 @@ jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 } );
 
 
+<<<<<<< HEAD
+=======
+jQuery.each( ( "blur focus focusin focusout resize scroll click dblclick " +
+	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
+	"change select submit keydown keypress keyup contextmenu" ).split( " " ),
+	function( i, name ) {
+
+	// Handle event binding
+	jQuery.fn[ name ] = function( data, fn ) {
+		return arguments.length > 0 ?
+			this.on( name, null, data, fn ) :
+			this.trigger( name );
+	};
+} );
+
+jQuery.fn.extend( {
+	hover: function( fnOver, fnOut ) {
+		return this.mouseenter( fnOver ).mouseleave( fnOut || fnOver );
+	}
+} );
+
+
+
+
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 jQuery.fn.extend( {
 
 	bind: function( types, data, fn ) {
@@ -8090,6 +8863,40 @@ jQuery.fn.extend( {
 	}
 } );
 
+<<<<<<< HEAD
+=======
+// Bind a function to a context, optionally partially applying any
+// arguments.
+// jQuery.proxy is deprecated to promote standards (specifically Function#bind)
+// However, it is not slated for removal any time soon
+jQuery.proxy = function( fn, context ) {
+	var tmp, args, proxy;
+
+	if ( typeof context === "string" ) {
+		tmp = fn[ context ];
+		context = fn;
+		fn = tmp;
+	}
+
+	// Quick check to determine if target is callable, in the spec
+	// this throws a TypeError, but we will just return undefined.
+	if ( !isFunction( fn ) ) {
+		return undefined;
+	}
+
+	// Simulated bind
+	args = slice.call( arguments, 2 );
+	proxy = function() {
+		return fn.apply( context || this, args.concat( slice.call( arguments ) ) );
+	};
+
+	// Set the guid of unique handler to the same of original handler, so it can be removed
+	proxy.guid = fn.guid = fn.guid || jQuery.guid++;
+
+	return proxy;
+};
+
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 jQuery.holdReady = function( hold ) {
 	if ( hold ) {
 		jQuery.readyWait++;
@@ -8100,6 +8907,29 @@ jQuery.holdReady = function( hold ) {
 jQuery.isArray = Array.isArray;
 jQuery.parseJSON = JSON.parse;
 jQuery.nodeName = nodeName;
+<<<<<<< HEAD
+=======
+jQuery.isFunction = isFunction;
+jQuery.isWindow = isWindow;
+jQuery.camelCase = camelCase;
+jQuery.type = toType;
+
+jQuery.now = Date.now;
+
+jQuery.isNumeric = function( obj ) {
+
+	// As of jQuery 3.0, isNumeric is limited to
+	// strings and numbers (primitives or objects)
+	// that can be coerced to finite numbers (gh-2662)
+	var type = jQuery.type( obj );
+	return ( type === "number" || type === "string" ) &&
+
+		// parseFloat NaNs numeric-cast false positives ("")
+		// ...but misinterprets leading-number strings, particularly hex literals ("0x...")
+		// subtraction forces infinities to NaN
+		!isNaN( obj - parseFloat( obj ) );
+};
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 
 

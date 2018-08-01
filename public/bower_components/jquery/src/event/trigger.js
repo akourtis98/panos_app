@@ -4,6 +4,7 @@ define( [
 	"../data/var/dataPriv",
 	"../data/var/acceptData",
 	"../var/hasOwn",
+<<<<<<< HEAD
 
 	"../event"
 ], function( jQuery, document, dataPriv, acceptData, hasOwn ) {
@@ -11,17 +12,38 @@ define( [
 "use strict";
 
 var rfocusMorph = /^(?:focusinfocus|focusoutblur)$/;
+=======
+	"../var/isFunction",
+	"../var/isWindow",
+	"../event"
+], function( jQuery, document, dataPriv, acceptData, hasOwn, isFunction, isWindow ) {
+
+"use strict";
+
+var rfocusMorph = /^(?:focusinfocus|focusoutblur)$/,
+	stopPropagationCallback = function( e ) {
+		e.stopPropagation();
+	};
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 jQuery.extend( jQuery.event, {
 
 	trigger: function( event, data, elem, onlyHandlers ) {
 
+<<<<<<< HEAD
 		var i, cur, tmp, bubbleType, ontype, handle, special,
+=======
+		var i, cur, tmp, bubbleType, ontype, handle, special, lastElement,
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			eventPath = [ elem || document ],
 			type = hasOwn.call( event, "type" ) ? event.type : event,
 			namespaces = hasOwn.call( event, "namespace" ) ? event.namespace.split( "." ) : [];
 
+<<<<<<< HEAD
 		cur = tmp = elem = elem || document;
+=======
+		cur = lastElement = tmp = elem = elem || document;
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 		// Don't do events on text and comment nodes
 		if ( elem.nodeType === 3 || elem.nodeType === 8 ) {
@@ -73,7 +95,11 @@ jQuery.extend( jQuery.event, {
 
 		// Determine event propagation path in advance, per W3C events spec (#9951)
 		// Bubble up to document, then to window; watch for a global ownerDocument var (#9724)
+<<<<<<< HEAD
 		if ( !onlyHandlers && !special.noBubble && !jQuery.isWindow( elem ) ) {
+=======
+		if ( !onlyHandlers && !special.noBubble && !isWindow( elem ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 			bubbleType = special.delegateType || type;
 			if ( !rfocusMorph.test( bubbleType + type ) ) {
@@ -93,7 +119,11 @@ jQuery.extend( jQuery.event, {
 		// Fire handlers on the event path
 		i = 0;
 		while ( ( cur = eventPath[ i++ ] ) && !event.isPropagationStopped() ) {
+<<<<<<< HEAD
 
+=======
+			lastElement = cur;
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			event.type = i > 1 ?
 				bubbleType :
 				special.bindType || type;
@@ -125,7 +155,11 @@ jQuery.extend( jQuery.event, {
 
 				// Call a native DOM method on the target with the same name as the event.
 				// Don't do default actions on window, that's where global variables be (#6170)
+<<<<<<< HEAD
 				if ( ontype && jQuery.isFunction( elem[ type ] ) && !jQuery.isWindow( elem ) ) {
+=======
+				if ( ontype && isFunction( elem[ type ] ) && !isWindow( elem ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 					// Don't re-trigger an onFOO event when we call its FOO() method
 					tmp = elem[ ontype ];
@@ -136,7 +170,21 @@ jQuery.extend( jQuery.event, {
 
 					// Prevent re-triggering of the same event, since we already bubbled it above
 					jQuery.event.triggered = type;
+<<<<<<< HEAD
 					elem[ type ]();
+=======
+
+					if ( event.isPropagationStopped() ) {
+						lastElement.addEventListener( type, stopPropagationCallback );
+					}
+
+					elem[ type ]();
+
+					if ( event.isPropagationStopped() ) {
+						lastElement.removeEventListener( type, stopPropagationCallback );
+					}
+
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 					jQuery.event.triggered = undefined;
 
 					if ( tmp ) {

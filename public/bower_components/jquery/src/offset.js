@@ -3,10 +3,15 @@ define( [
 	"./core/access",
 	"./var/document",
 	"./var/documentElement",
+<<<<<<< HEAD
+=======
+	"./var/isFunction",
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	"./css/var/rnumnonpx",
 	"./css/curCSS",
 	"./css/addGetHookIf",
 	"./css/support",
+<<<<<<< HEAD
 	"./core/nodeName",
 
 	"./core/init",
@@ -14,6 +19,14 @@ define( [
 	"./selector" // contains
 ], function( jQuery, access, document, documentElement, rnumnonpx,
              curCSS, addGetHookIf, support, nodeName ) {
+=======
+	"./var/isWindow",
+	"./core/init",
+	"./css",
+	"./selector" // contains
+], function( jQuery, access, document, documentElement, isFunction, rnumnonpx,
+             curCSS, addGetHookIf, support, isWindow ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 "use strict";
 
@@ -47,7 +60,11 @@ jQuery.offset = {
 			curLeft = parseFloat( curCSSLeft ) || 0;
 		}
 
+<<<<<<< HEAD
 		if ( jQuery.isFunction( options ) ) {
+=======
+		if ( isFunction( options ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 			// Use jQuery.extend here to allow modification of coordinates argument (gh-1848)
 			options = options.call( elem, i, jQuery.extend( {}, curOffset ) );
@@ -70,6 +87,11 @@ jQuery.offset = {
 };
 
 jQuery.fn.extend( {
+<<<<<<< HEAD
+=======
+
+	// offset() relates an element's border box to the document origin
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	offset: function( options ) {
 
 		// Preserve chaining for setter
@@ -81,7 +103,11 @@ jQuery.fn.extend( {
 				} );
 		}
 
+<<<<<<< HEAD
 		var doc, docElem, rect, win,
+=======
+		var rect, win,
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			elem = this[ 0 ];
 
 		if ( !elem ) {
@@ -96,6 +122,7 @@ jQuery.fn.extend( {
 			return { top: 0, left: 0 };
 		}
 
+<<<<<<< HEAD
 		rect = elem.getBoundingClientRect();
 
 		doc = elem.ownerDocument;
@@ -108,11 +135,25 @@ jQuery.fn.extend( {
 		};
 	},
 
+=======
+		// Get document-relative position by adding viewport scroll to viewport-relative gBCR
+		rect = elem.getBoundingClientRect();
+		win = elem.ownerDocument.defaultView;
+		return {
+			top: rect.top + win.pageYOffset,
+			left: rect.left + win.pageXOffset
+		};
+	},
+
+	// position() relates an element's margin box to its offset parent's padding box
+	// This corresponds to the behavior of CSS absolute positioning
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	position: function() {
 		if ( !this[ 0 ] ) {
 			return;
 		}
 
+<<<<<<< HEAD
 		var offsetParent, offset,
 			elem = this[ 0 ],
 			parentOffset = { top: 0, left: 0 };
@@ -140,6 +181,38 @@ jQuery.fn.extend( {
 				top: parentOffset.top + jQuery.css( offsetParent[ 0 ], "borderTopWidth", true ),
 				left: parentOffset.left + jQuery.css( offsetParent[ 0 ], "borderLeftWidth", true )
 			};
+=======
+		var offsetParent, offset, doc,
+			elem = this[ 0 ],
+			parentOffset = { top: 0, left: 0 };
+
+		// position:fixed elements are offset from the viewport, which itself always has zero offset
+		if ( jQuery.css( elem, "position" ) === "fixed" ) {
+
+			// Assume position:fixed implies availability of getBoundingClientRect
+			offset = elem.getBoundingClientRect();
+
+		} else {
+			offset = this.offset();
+
+			// Account for the *real* offset parent, which can be the document or its root element
+			// when a statically positioned element is identified
+			doc = elem.ownerDocument;
+			offsetParent = elem.offsetParent || doc.documentElement;
+			while ( offsetParent &&
+				( offsetParent === doc.body || offsetParent === doc.documentElement ) &&
+				jQuery.css( offsetParent, "position" ) === "static" ) {
+
+				offsetParent = offsetParent.parentNode;
+			}
+			if ( offsetParent && offsetParent !== elem && offsetParent.nodeType === 1 ) {
+
+				// Incorporate borders into its offset, since they are outside its content origin
+				parentOffset = jQuery( offsetParent ).offset();
+				parentOffset.top += jQuery.css( offsetParent, "borderTopWidth", true );
+				parentOffset.left += jQuery.css( offsetParent, "borderLeftWidth", true );
+			}
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		}
 
 		// Subtract parent offsets and element margins
@@ -181,7 +254,11 @@ jQuery.each( { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function( 
 
 			// Coalesce documents and windows
 			var win;
+<<<<<<< HEAD
 			if ( jQuery.isWindow( elem ) ) {
+=======
+			if ( isWindow( elem ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 				win = elem;
 			} else if ( elem.nodeType === 9 ) {
 				win = elem.defaultView;

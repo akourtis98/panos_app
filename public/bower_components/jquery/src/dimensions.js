@@ -1,8 +1,14 @@
 define( [
 	"./core",
 	"./core/access",
+<<<<<<< HEAD
 	"./css"
 ], function( jQuery, access ) {
+=======
+	"./var/isWindow",
+	"./css"
+], function( jQuery, access, isWindow ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 "use strict";
 
@@ -19,7 +25,11 @@ jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 			return access( this, function( elem, type, value ) {
 				var doc;
 
+<<<<<<< HEAD
 				if ( jQuery.isWindow( elem ) ) {
+=======
+				if ( isWindow( elem ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 					// $( window ).outerWidth/Height return w/h including scrollbars (gh-1729)
 					return funcName.indexOf( "outer" ) === 0 ?

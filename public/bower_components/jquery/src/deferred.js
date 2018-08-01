@@ -1,8 +1,15 @@
 define( [
 	"./core",
+<<<<<<< HEAD
 	"./var/slice",
 	"./callbacks"
 ], function( jQuery, slice ) {
+=======
+	"./var/isFunction",
+	"./var/slice",
+	"./callbacks"
+], function( jQuery, isFunction, slice ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 "use strict";
 
@@ -19,11 +26,19 @@ function adoptValue( value, resolve, reject, noValue ) {
 	try {
 
 		// Check for promise aspect first to privilege synchronous behavior
+<<<<<<< HEAD
 		if ( value && jQuery.isFunction( ( method = value.promise ) ) ) {
 			method.call( value ).done( resolve ).fail( reject );
 
 		// Other thenables
 		} else if ( value && jQuery.isFunction( ( method = value.then ) ) ) {
+=======
+		if ( value && isFunction( ( method = value.promise ) ) ) {
+			method.call( value ).done( resolve ).fail( reject );
+
+		// Other thenables
+		} else if ( value && isFunction( ( method = value.then ) ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			method.call( value, resolve, reject );
 
 		// Other non-thenables
@@ -81,14 +96,22 @@ jQuery.extend( {
 						jQuery.each( tuples, function( i, tuple ) {
 
 							// Map tuples (progress, done, fail) to arguments (done, fail, progress)
+<<<<<<< HEAD
 							var fn = jQuery.isFunction( fns[ tuple[ 4 ] ] ) && fns[ tuple[ 4 ] ];
+=======
+							var fn = isFunction( fns[ tuple[ 4 ] ] ) && fns[ tuple[ 4 ] ];
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 							// deferred.progress(function() { bind to newDefer or newDefer.notify })
 							// deferred.done(function() { bind to newDefer or newDefer.resolve })
 							// deferred.fail(function() { bind to newDefer or newDefer.reject })
 							deferred[ tuple[ 1 ] ]( function() {
 								var returned = fn && fn.apply( this, arguments );
+<<<<<<< HEAD
 								if ( returned && jQuery.isFunction( returned.promise ) ) {
+=======
+								if ( returned && isFunction( returned.promise ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 									returned.promise()
 										.progress( newDefer.notify )
 										.done( newDefer.resolve )
@@ -142,7 +165,11 @@ jQuery.extend( {
 										returned.then;
 
 									// Handle a returned thenable
+<<<<<<< HEAD
 									if ( jQuery.isFunction( then ) ) {
+=======
+									if ( isFunction( then ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 										// Special processors (notify) just wait for resolution
 										if ( special ) {
@@ -238,7 +265,11 @@ jQuery.extend( {
 							resolve(
 								0,
 								newDefer,
+<<<<<<< HEAD
 								jQuery.isFunction( onProgress ) ?
+=======
+								isFunction( onProgress ) ?
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 									onProgress :
 									Identity,
 								newDefer.notifyWith
@@ -250,7 +281,11 @@ jQuery.extend( {
 							resolve(
 								0,
 								newDefer,
+<<<<<<< HEAD
 								jQuery.isFunction( onFulfilled ) ?
+=======
+								isFunction( onFulfilled ) ?
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 									onFulfilled :
 									Identity
 							)
@@ -261,7 +296,11 @@ jQuery.extend( {
 							resolve(
 								0,
 								newDefer,
+<<<<<<< HEAD
 								jQuery.isFunction( onRejected ) ?
+=======
+								isFunction( onRejected ) ?
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 									onRejected :
 									Thrower
 							)
@@ -301,8 +340,20 @@ jQuery.extend( {
 					// fulfilled_callbacks.disable
 					tuples[ 3 - i ][ 2 ].disable,
 
+<<<<<<< HEAD
 					// progress_callbacks.lock
 					tuples[ 0 ][ 2 ].lock
+=======
+					// rejected_handlers.disable
+					// fulfilled_handlers.disable
+					tuples[ 3 - i ][ 3 ].disable,
+
+					// progress_callbacks.lock
+					tuples[ 0 ][ 2 ].lock,
+
+					// progress_handlers.lock
+					tuples[ 0 ][ 3 ].lock
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 				);
 			}
 
@@ -372,7 +423,11 @@ jQuery.extend( {
 
 			// Use .then() to unwrap secondary thenables (cf. gh-3000)
 			if ( master.state() === "pending" ||
+<<<<<<< HEAD
 				jQuery.isFunction( resolveValues[ i ] && resolveValues[ i ].then ) ) {
+=======
+				isFunction( resolveValues[ i ] && resolveValues[ i ].then ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 				return master.then();
 			}

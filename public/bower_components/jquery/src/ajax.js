@@ -1,6 +1,10 @@
 define( [
 	"./core",
 	"./var/document",
+<<<<<<< HEAD
+=======
+	"./var/isFunction",
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	"./var/rnothtmlwhite",
 	"./ajax/var/location",
 	"./ajax/var/nonce",
@@ -11,7 +15,11 @@ define( [
 	"./event/trigger",
 	"./deferred",
 	"./serialize" // jQuery.param
+<<<<<<< HEAD
 ], function( jQuery, document, rnothtmlwhite, location, nonce, rquery ) {
+=======
+], function( jQuery, document, isFunction, rnothtmlwhite, location, nonce, rquery ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 "use strict";
 
@@ -66,7 +74,11 @@ function addToPrefiltersOrTransports( structure ) {
 			i = 0,
 			dataTypes = dataTypeExpression.toLowerCase().match( rnothtmlwhite ) || [];
 
+<<<<<<< HEAD
 		if ( jQuery.isFunction( func ) ) {
+=======
+		if ( isFunction( func ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 			// For each dataType in the dataTypeExpression
 			while ( ( dataType = dataTypes[ i++ ] ) ) {
@@ -538,7 +550,11 @@ jQuery.extend( {
 		if ( s.crossDomain == null ) {
 			urlAnchor = document.createElement( "a" );
 
+<<<<<<< HEAD
 			// Support: IE <=8 - 11, Edge 12 - 13
+=======
+			// Support: IE <=8 - 11, Edge 12 - 15
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			// IE throws exception on accessing the href property if url is malformed,
 			// e.g. http://example.com:80x/
 			try {
@@ -596,8 +612,13 @@ jQuery.extend( {
 			// Remember the hash so we can put it back
 			uncached = s.url.slice( cacheURL.length );
 
+<<<<<<< HEAD
 			// If data is available, append data to url
 			if ( s.data ) {
+=======
+			// If data is available and should be processed, append data to url
+			if ( s.data && ( s.processData || typeof s.data === "string" ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 				cacheURL += ( rquery.test( cacheURL ) ? "&" : "?" ) + s.data;
 
 				// #9682: remove data so that it's not used in an eventual retry
@@ -834,7 +855,11 @@ jQuery.each( [ "get", "post" ], function( i, method ) {
 	jQuery[ method ] = function( url, data, callback, type ) {
 
 		// Shift arguments if data argument was omitted
+<<<<<<< HEAD
 		if ( jQuery.isFunction( data ) ) {
+=======
+		if ( isFunction( data ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			type = type || callback;
 			callback = data;
 			data = undefined;

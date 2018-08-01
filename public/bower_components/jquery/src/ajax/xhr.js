@@ -75,7 +75,12 @@ jQuery.ajaxTransport( function( options ) {
 					return function() {
 						if ( callback ) {
 							callback = errorCallback = xhr.onload =
+<<<<<<< HEAD
 								xhr.onerror = xhr.onabort = xhr.onreadystatechange = null;
+=======
+								xhr.onerror = xhr.onabort = xhr.ontimeout =
+									xhr.onreadystatechange = null;
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 							if ( type === "abort" ) {
 								xhr.abort();
@@ -115,7 +120,11 @@ jQuery.ajaxTransport( function( options ) {
 
 				// Listen to events
 				xhr.onload = callback();
+<<<<<<< HEAD
 				errorCallback = xhr.onerror = callback( "error" );
+=======
+				errorCallback = xhr.onerror = xhr.ontimeout = callback( "error" );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 				// Support: IE 9 only
 				// Use onreadystatechange to replace onabort

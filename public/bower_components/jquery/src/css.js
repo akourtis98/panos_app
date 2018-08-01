@@ -2,7 +2,11 @@ define( [
 	"./core",
 	"./var/pnum",
 	"./core/access",
+<<<<<<< HEAD
 	"./css/var/rmargin",
+=======
+	"./core/camelCase",
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	"./var/document",
 	"./var/rcssNum",
 	"./css/var/rnumnonpx",
@@ -17,7 +21,11 @@ define( [
 	"./core/init",
 	"./core/ready",
 	"./selector" // contains
+<<<<<<< HEAD
 ], function( jQuery, pnum, access, rmargin, document, rcssNum, rnumnonpx, cssExpand,
+=======
+], function( jQuery, pnum, access, camelCase, document, rcssNum, rnumnonpx, cssExpand,
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	getStyles, swap, curCSS, adjustCSS, addGetHookIf, support ) {
 
 "use strict";
@@ -80,6 +88,7 @@ function setPositiveNumber( elem, value, subtract ) {
 		value;
 }
 
+<<<<<<< HEAD
 function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
 	var i,
 		val = 0;
@@ -91,10 +100,21 @@ function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
 	// Otherwise initialize for horizontal or vertical properties
 	} else {
 		i = name === "width" ? 1 : 0;
+=======
+function boxModelAdjustment( elem, dimension, box, isBorderBox, styles, computedVal ) {
+	var i = dimension === "width" ? 1 : 0,
+		extra = 0,
+		delta = 0;
+
+	// Adjustment may not be necessary
+	if ( box === ( isBorderBox ? "border" : "content" ) ) {
+		return 0;
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	}
 
 	for ( ; i < 4; i += 2 ) {
 
+<<<<<<< HEAD
 		// Both box models exclude margin, so add it if we want it
 		if ( extra === "margin" ) {
 			val += jQuery.css( elem, extra + cssExpand[ i ], true, styles );
@@ -119,10 +139,45 @@ function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
 			// At this point, extra isn't content nor padding, so add border
 			if ( extra !== "padding" ) {
 				val += jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+=======
+		// Both box models exclude margin
+		if ( box === "margin" ) {
+			delta += jQuery.css( elem, box + cssExpand[ i ], true, styles );
+		}
+
+		// If we get here with a content-box, we're seeking "padding" or "border" or "margin"
+		if ( !isBorderBox ) {
+
+			// Add padding
+			delta += jQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
+
+			// For "border" or "margin", add border
+			if ( box !== "padding" ) {
+				delta += jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+
+			// But still keep track of it otherwise
+			} else {
+				extra += jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+			}
+
+		// If we get here with a border-box (content + padding + border), we're seeking "content" or
+		// "padding" or "margin"
+		} else {
+
+			// For "content", subtract padding
+			if ( box === "content" ) {
+				delta -= jQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
+			}
+
+			// For "content" or "padding", subtract border
+			if ( box !== "margin" ) {
+				delta -= jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			}
 		}
 	}
 
+<<<<<<< HEAD
 	return val;
 }
 
@@ -137,10 +192,45 @@ function getWidthOrHeight( elem, name, extra ) {
 	// Computed unit is not pixels. Stop here and return.
 	if ( rnumnonpx.test( val ) ) {
 		return val;
+=======
+	// Account for positive content-box scroll gutter when requested by providing computedVal
+	if ( !isBorderBox && computedVal >= 0 ) {
+
+		// offsetWidth/offsetHeight is a rounded sum of content, padding, scroll gutter, and border
+		// Assuming integer scroll gutter, subtract the rest and round down
+		delta += Math.max( 0, Math.ceil(
+			elem[ "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 ) ] -
+			computedVal -
+			delta -
+			extra -
+			0.5
+		) );
+	}
+
+	return delta;
+}
+
+function getWidthOrHeight( elem, dimension, extra ) {
+
+	// Start with computed style
+	var styles = getStyles( elem ),
+		val = curCSS( elem, dimension, styles ),
+		isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box",
+		valueIsBorderBox = isBorderBox;
+
+	// Support: Firefox <=54
+	// Return a confounding non-pixel value or feign ignorance, as appropriate.
+	if ( rnumnonpx.test( val ) ) {
+		if ( !extra ) {
+			return val;
+		}
+		val = "auto";
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	}
 
 	// Check for style in case a browser which returns unreliable values
 	// for getComputedStyle silently falls back to the reliable elem.style
+<<<<<<< HEAD
 	valueIsBorderBox = isBorderBox &&
 		( support.boxSizingReliable() || val === elem.style[ name ] );
 
@@ -161,6 +251,38 @@ function getWidthOrHeight( elem, name, extra ) {
 			extra || ( isBorderBox ? "border" : "content" ),
 			valueIsBorderBox,
 			styles
+=======
+	valueIsBorderBox = valueIsBorderBox &&
+		( support.boxSizingReliable() || val === elem.style[ dimension ] );
+
+	// Fall back to offsetWidth/offsetHeight when value is "auto"
+	// This happens for inline elements with no explicit setting (gh-3571)
+	// Support: Android <=4.1 - 4.3 only
+	// Also use offsetWidth/offsetHeight for misreported inline dimensions (gh-3602)
+	if ( val === "auto" ||
+		!parseFloat( val ) && jQuery.css( elem, "display", false, styles ) === "inline" ) {
+
+		val = elem[ "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 ) ];
+
+		// offsetWidth/offsetHeight provide border-box values
+		valueIsBorderBox = true;
+	}
+
+	// Normalize "" and auto
+	val = parseFloat( val ) || 0;
+
+	// Adjust for the element's box model
+	return ( val +
+		boxModelAdjustment(
+			elem,
+			dimension,
+			extra || ( isBorderBox ? "border" : "content" ),
+			valueIsBorderBox,
+			styles,
+
+			// Provide the current computed size to request scroll gutter calculation (gh-3589)
+			val
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		)
 	) + "px";
 }
@@ -201,9 +323,13 @@ jQuery.extend( {
 
 	// Add in properties whose names you wish to fix before
 	// setting or getting the value
+<<<<<<< HEAD
 	cssProps: {
 		"float": "cssFloat"
 	},
+=======
+	cssProps: {},
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 	// Get and set the style property on a DOM Node
 	style: function( elem, name, value, extra ) {
@@ -215,7 +341,11 @@ jQuery.extend( {
 
 		// Make sure that we're working with the right name
 		var ret, type, hooks,
+<<<<<<< HEAD
 			origName = jQuery.camelCase( name ),
+=======
+			origName = camelCase( name ),
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			isCustomProp = rcustomProp.test( name ),
 			style = elem.style;
 
@@ -283,7 +413,11 @@ jQuery.extend( {
 
 	css: function( elem, name, extra, styles ) {
 		var val, num, hooks,
+<<<<<<< HEAD
 			origName = jQuery.camelCase( name ),
+=======
+			origName = camelCase( name ),
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			isCustomProp = rcustomProp.test( name );
 
 		// Make sure that we're working with the right name. We don't
@@ -321,8 +455,13 @@ jQuery.extend( {
 	}
 } );
 
+<<<<<<< HEAD
 jQuery.each( [ "height", "width" ], function( i, name ) {
 	jQuery.cssHooks[ name ] = {
+=======
+jQuery.each( [ "height", "width" ], function( i, dimension ) {
+	jQuery.cssHooks[ dimension ] = {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		get: function( elem, computed, extra ) {
 			if ( computed ) {
 
@@ -338,14 +477,21 @@ jQuery.each( [ "height", "width" ], function( i, name ) {
 					// in IE throws an error.
 					( !elem.getClientRects().length || !elem.getBoundingClientRect().width ) ?
 						swap( elem, cssShow, function() {
+<<<<<<< HEAD
 							return getWidthOrHeight( elem, name, extra );
 						} ) :
 						getWidthOrHeight( elem, name, extra );
+=======
+							return getWidthOrHeight( elem, dimension, extra );
+						} ) :
+						getWidthOrHeight( elem, dimension, extra );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			}
 		},
 
 		set: function( elem, value, extra ) {
 			var matches,
+<<<<<<< HEAD
 				styles = extra && getStyles( elem ),
 				subtract = extra && augmentWidthOrHeight(
 					elem,
@@ -355,12 +501,40 @@ jQuery.each( [ "height", "width" ], function( i, name ) {
 					styles
 				);
 
+=======
+				styles = getStyles( elem ),
+				isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box",
+				subtract = extra && boxModelAdjustment(
+					elem,
+					dimension,
+					extra,
+					isBorderBox,
+					styles
+				);
+
+			// Account for unreliable border-box dimensions by comparing offset* to computed and
+			// faking a content-box to get border and padding (gh-3699)
+			if ( isBorderBox && support.scrollboxSize() === styles.position ) {
+				subtract -= Math.ceil(
+					elem[ "offset" + dimension[ 0 ].toUpperCase() + dimension.slice( 1 ) ] -
+					parseFloat( styles[ dimension ] ) -
+					boxModelAdjustment( elem, dimension, "border", false, styles ) -
+					0.5
+				);
+			}
+
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			// Convert to pixels if value adjustment is needed
 			if ( subtract && ( matches = rcssNum.exec( value ) ) &&
 				( matches[ 3 ] || "px" ) !== "px" ) {
 
+<<<<<<< HEAD
 				elem.style[ name ] = value;
 				value = jQuery.css( elem, name );
+=======
+				elem.style[ dimension ] = value;
+				value = jQuery.css( elem, dimension );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			}
 
 			return setPositiveNumber( elem, value, subtract );
@@ -404,7 +578,11 @@ jQuery.each( {
 		}
 	};
 
+<<<<<<< HEAD
 	if ( !rmargin.test( prefix ) ) {
+=======
+	if ( prefix !== "margin" ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		jQuery.cssHooks[ prefix + suffix ].set = setPositiveNumber;
 	}
 } );

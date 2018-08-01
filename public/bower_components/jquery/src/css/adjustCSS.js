@@ -6,8 +6,12 @@ define( [
 "use strict";
 
 function adjustCSS( elem, prop, valueParts, tween ) {
+<<<<<<< HEAD
 	var adjusted,
 		scale = 1,
+=======
+	var adjusted, scale,
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		maxIterations = 20,
 		currentValue = tween ?
 			function() {
@@ -25,6 +29,7 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 
 	if ( initialInUnit && initialInUnit[ 3 ] !== unit ) {
 
+<<<<<<< HEAD
 		// Trust units reported by jQuery.css
 		unit = unit || initialInUnit[ 3 ];
 
@@ -49,6 +54,35 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 		} while (
 			scale !== ( scale = currentValue() / initial ) && scale !== 1 && --maxIterations
 		);
+=======
+		// Support: Firefox <=54
+		// Halve the iteration target value to prevent interference from CSS upper bounds (gh-2144)
+		initial = initial / 2;
+
+		// Trust units reported by jQuery.css
+		unit = unit || initialInUnit[ 3 ];
+
+		// Iteratively approximate from a nonzero starting point
+		initialInUnit = +initial || 1;
+
+		while ( maxIterations-- ) {
+
+			// Evaluate and update our best guess (doubling guesses that zero out).
+			// Finish if the scale equals or crosses 1 (making the old*new product non-positive).
+			jQuery.style( elem, prop, initialInUnit + unit );
+			if ( ( 1 - scale ) * ( 1 - ( scale = currentValue() / initial || 0.5 ) ) <= 0 ) {
+				maxIterations = 0;
+			}
+			initialInUnit = initialInUnit / scale;
+
+		}
+
+		initialInUnit = initialInUnit * 2;
+		jQuery.style( elem, prop, initialInUnit + unit );
+
+		// Make sure we update the tween properties later on
+		valueParts = valueParts || [];
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	}
 
 	if ( valueParts ) {

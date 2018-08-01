@@ -16,15 +16,29 @@ define( [
 	"./var/fnToString",
 	"./var/ObjectFunctionString",
 	"./var/support",
+<<<<<<< HEAD
 	"./core/DOMEval"
 ], function( arr, document, getProto, slice, concat, push, indexOf,
 	class2type, toString, hasOwn, fnToString, ObjectFunctionString,
 	support, DOMEval ) {
+=======
+	"./var/isFunction",
+	"./var/isWindow",
+	"./core/DOMEval",
+	"./core/toType"
+], function( arr, document, getProto, slice, concat, push, indexOf,
+	class2type, toString, hasOwn, fnToString, ObjectFunctionString,
+	support, isFunction, isWindow, DOMEval, toType ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 "use strict";
 
 var
+<<<<<<< HEAD
 	version = "3.2.1",
+=======
+	version = "3.3.1",
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -36,6 +50,7 @@ var
 
 	// Support: Android <=4.0 only
 	// Make sure we trim BOM and NBSP
+<<<<<<< HEAD
 	rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,
 
 	// Matches dashed string for camelizing
@@ -46,6 +61,9 @@ var
 	fcamelCase = function( all, letter ) {
 		return letter.toUpperCase();
 	};
+=======
+	rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 jQuery.fn = jQuery.prototype = {
 
@@ -145,7 +163,11 @@ jQuery.extend = jQuery.fn.extend = function() {
 	}
 
 	// Handle case when target is a string or something (possible in deep copy)
+<<<<<<< HEAD
 	if ( typeof target !== "object" && !jQuery.isFunction( target ) ) {
+=======
+	if ( typeof target !== "object" && !isFunction( target ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		target = {};
 	}
 
@@ -211,6 +233,7 @@ jQuery.extend( {
 
 	noop: function() {},
 
+<<<<<<< HEAD
 	isFunction: function( obj ) {
 		return jQuery.type( obj ) === "function";
 	},
@@ -233,6 +256,8 @@ jQuery.extend( {
 			!isNaN( obj - parseFloat( obj ) );
 	},
 
+=======
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	isPlainObject: function( obj ) {
 		var proto, Ctor;
 
@@ -266,6 +291,7 @@ jQuery.extend( {
 		return true;
 	},
 
+<<<<<<< HEAD
 	type: function( obj ) {
 		if ( obj == null ) {
 			return obj + "";
@@ -277,11 +303,14 @@ jQuery.extend( {
 			typeof obj;
 	},
 
+=======
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	// Evaluates a script in a global context
 	globalEval: function( code ) {
 		DOMEval( code );
 	},
 
+<<<<<<< HEAD
 	// Convert dashed to camelCase; used by the css and data modules
 	// Support: IE <=9 - 11, Edge 12 - 13
 	// Microsoft forgot to hump their vendor prefix (#9572)
@@ -289,6 +318,8 @@ jQuery.extend( {
 		return string.replace( rmsPrefix, "ms-" ).replace( rdashAlpha, fcamelCase );
 	},
 
+=======
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	each: function( obj, callback ) {
 		var length, i = 0;
 
@@ -409,6 +440,7 @@ jQuery.extend( {
 	// A global GUID counter for objects
 	guid: 1,
 
+<<<<<<< HEAD
 	// Bind a function to a context, optionally partially applying any
 	// arguments.
 	proxy: function( fn, context ) {
@@ -440,6 +472,8 @@ jQuery.extend( {
 
 	now: Date.now,
 
+=======
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	// jQuery.support is not used in Core but other projects attach their
 	// properties to it so it needs to exist.
 	support: support
@@ -462,9 +496,15 @@ function isArrayLike( obj ) {
 	// hasOwn isn't used here due to false negatives
 	// regarding Nodelist length in IE
 	var length = !!obj && "length" in obj && obj.length,
+<<<<<<< HEAD
 		type = jQuery.type( obj );
 
 	if ( type === "function" || jQuery.isWindow( obj ) ) {
+=======
+		type = toType( obj );
+
+	if ( isFunction( obj ) || isWindow( obj ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		return false;
 	}
 

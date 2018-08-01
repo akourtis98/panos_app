@@ -1,6 +1,12 @@
 define( [
 	"./core",
+<<<<<<< HEAD
 	"./var/document",
+=======
+	"./core/camelCase",
+	"./var/document",
+	"./var/isFunction",
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	"./var/rcssNum",
 	"./var/rnothtmlwhite",
 	"./css/var/cssExpand",
@@ -17,8 +23,13 @@ define( [
 	"./manipulation",
 	"./css",
 	"./effects/Tween"
+<<<<<<< HEAD
 ], function( jQuery, document, rcssNum, rnothtmlwhite, cssExpand, isHiddenWithinTree, swap,
 	adjustCSS, dataPriv, showHide ) {
+=======
+], function( jQuery, camelCase, document, isFunction, rcssNum, rnothtmlwhite, cssExpand,
+	isHiddenWithinTree, swap, adjustCSS, dataPriv, showHide ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 "use strict";
 
@@ -44,7 +55,11 @@ function createFxNow() {
 	window.setTimeout( function() {
 		fxNow = undefined;
 	} );
+<<<<<<< HEAD
 	return ( fxNow = jQuery.now() );
+=======
+	return ( fxNow = Date.now() );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 }
 
 // Generate parameters to create a standard animation
@@ -148,9 +163,16 @@ function defaultPrefilter( elem, props, opts ) {
 	// Restrict "overflow" and "display" styles during box animations
 	if ( isBox && elem.nodeType === 1 ) {
 
+<<<<<<< HEAD
 		// Support: IE <=9 - 11, Edge 12 - 13
 		// Record all 3 overflow attributes because IE does not infer the shorthand
 		// from identically-valued overflowX and overflowY
+=======
+		// Support: IE <=9 - 11, Edge 12 - 15
+		// Record all 3 overflow attributes because IE does not infer the shorthand
+		// from identically-valued overflowX and overflowY and Edge just mirrors
+		// the overflowX value there.
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		opts.overflow = [ style.overflow, style.overflowX, style.overflowY ];
 
 		// Identify a display type, preferring old show/hide data over the CSS cascade
@@ -258,7 +280,11 @@ function propFilter( props, specialEasing ) {
 
 	// camelCase, specialEasing and expand cssHook pass
 	for ( index in props ) {
+<<<<<<< HEAD
 		name = jQuery.camelCase( index );
+=======
+		name = camelCase( index );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		easing = specialEasing[ name ];
 		value = props[ index ];
 		if ( Array.isArray( value ) ) {
@@ -383,9 +409,15 @@ function Animation( elem, properties, options ) {
 	for ( ; index < length; index++ ) {
 		result = Animation.prefilters[ index ].call( animation, elem, props, animation.opts );
 		if ( result ) {
+<<<<<<< HEAD
 			if ( jQuery.isFunction( result.stop ) ) {
 				jQuery._queueHooks( animation.elem, animation.opts.queue ).stop =
 					jQuery.proxy( result.stop, result );
+=======
+			if ( isFunction( result.stop ) ) {
+				jQuery._queueHooks( animation.elem, animation.opts.queue ).stop =
+					result.stop.bind( result );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			}
 			return result;
 		}
@@ -393,7 +425,11 @@ function Animation( elem, properties, options ) {
 
 	jQuery.map( props, createTween, animation );
 
+<<<<<<< HEAD
 	if ( jQuery.isFunction( animation.opts.start ) ) {
+=======
+	if ( isFunction( animation.opts.start ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		animation.opts.start.call( elem, animation );
 	}
 
@@ -426,7 +462,11 @@ jQuery.Animation = jQuery.extend( Animation, {
 	},
 
 	tweener: function( props, callback ) {
+<<<<<<< HEAD
 		if ( jQuery.isFunction( props ) ) {
+=======
+		if ( isFunction( props ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			callback = props;
 			props = [ "*" ];
 		} else {
@@ -458,9 +498,15 @@ jQuery.Animation = jQuery.extend( Animation, {
 jQuery.speed = function( speed, easing, fn ) {
 	var opt = speed && typeof speed === "object" ? jQuery.extend( {}, speed ) : {
 		complete: fn || !fn && easing ||
+<<<<<<< HEAD
 			jQuery.isFunction( speed ) && speed,
 		duration: speed,
 		easing: fn && easing || easing && !jQuery.isFunction( easing ) && easing
+=======
+			isFunction( speed ) && speed,
+		duration: speed,
+		easing: fn && easing || easing && !isFunction( easing ) && easing
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	};
 
 	// Go to the end state if fx are off
@@ -487,7 +533,11 @@ jQuery.speed = function( speed, easing, fn ) {
 	opt.old = opt.complete;
 
 	opt.complete = function() {
+<<<<<<< HEAD
 		if ( jQuery.isFunction( opt.old ) ) {
+=======
+		if ( isFunction( opt.old ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			opt.old.call( this );
 		}
 
@@ -651,7 +701,11 @@ jQuery.fx.tick = function() {
 		i = 0,
 		timers = jQuery.timers;
 
+<<<<<<< HEAD
 	fxNow = jQuery.now();
+=======
+	fxNow = Date.now();
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 	for ( ; i < timers.length; i++ ) {
 		timer = timers[ i ];

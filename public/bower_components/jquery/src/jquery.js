@@ -11,7 +11,10 @@ define( [
 	"./queue/delay",
 	"./attributes",
 	"./event",
+<<<<<<< HEAD
 	"./event/alias",
+=======
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	"./event/focusin",
 	"./manipulation",
 	"./manipulation/_evalUrl",

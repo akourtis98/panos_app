@@ -1,6 +1,13 @@
 define( [
+<<<<<<< HEAD
 	"../core"
 ], function( jQuery ) {
+=======
+	"../core",
+	"../core/toType",
+	"../var/isFunction"
+], function( jQuery, toType, isFunction ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 "use strict";
 
@@ -12,7 +19,11 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 		bulk = key == null;
 
 	// Sets many values
+<<<<<<< HEAD
 	if ( jQuery.type( key ) === "object" ) {
+=======
+	if ( toType( key ) === "object" ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		chainable = true;
 		for ( i in key ) {
 			access( elems, fn, i, key[ i ], true, emptyGet, raw );
@@ -22,7 +33,11 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 	} else if ( value !== undefined ) {
 		chainable = true;
 
+<<<<<<< HEAD
 		if ( !jQuery.isFunction( value ) ) {
+=======
+		if ( !isFunction( value ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			raw = true;
 		}
 

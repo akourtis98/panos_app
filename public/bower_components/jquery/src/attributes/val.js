@@ -3,9 +3,16 @@ define( [
 	"../core/stripAndCollapse",
 	"./support",
 	"../core/nodeName",
+<<<<<<< HEAD
 
 	"../core/init"
 ], function( jQuery, stripAndCollapse, support, nodeName ) {
+=======
+	"../var/isFunction",
+
+	"../core/init"
+], function( jQuery, stripAndCollapse, support, nodeName, isFunction ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 "use strict";
 
@@ -13,7 +20,11 @@ var rreturn = /\r/g;
 
 jQuery.fn.extend( {
 	val: function( value ) {
+<<<<<<< HEAD
 		var hooks, ret, isFunction,
+=======
+		var hooks, ret, valueIsFunction,
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			elem = this[ 0 ];
 
 		if ( !arguments.length ) {
@@ -42,7 +53,11 @@ jQuery.fn.extend( {
 			return;
 		}
 
+<<<<<<< HEAD
 		isFunction = jQuery.isFunction( value );
+=======
+		valueIsFunction = isFunction( value );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 		return this.each( function( i ) {
 			var val;
@@ -51,7 +66,11 @@ jQuery.fn.extend( {
 				return;
 			}
 
+<<<<<<< HEAD
 			if ( isFunction ) {
+=======
+			if ( valueIsFunction ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 				val = value.call( this, i, jQuery( this ).val() );
 			} else {
 				val = value;

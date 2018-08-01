@@ -1,9 +1,17 @@
 define( [
 	"./core",
+<<<<<<< HEAD
 	"./core/init",
 	"./manipulation", // clone
 	"./traversing" // parent, contents
 ], function( jQuery ) {
+=======
+	"./var/isFunction",
+	"./core/init",
+	"./manipulation", // clone
+	"./traversing" // parent, contents
+], function( jQuery, isFunction ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 "use strict";
 
@@ -12,7 +20,11 @@ jQuery.fn.extend( {
 		var wrap;
 
 		if ( this[ 0 ] ) {
+<<<<<<< HEAD
 			if ( jQuery.isFunction( html ) ) {
+=======
+			if ( isFunction( html ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 				html = html.call( this[ 0 ] );
 			}
 
@@ -38,7 +50,11 @@ jQuery.fn.extend( {
 	},
 
 	wrapInner: function( html ) {
+<<<<<<< HEAD
 		if ( jQuery.isFunction( html ) ) {
+=======
+		if ( isFunction( html ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			return this.each( function( i ) {
 				jQuery( this ).wrapInner( html.call( this, i ) );
 			} );
@@ -58,10 +74,17 @@ jQuery.fn.extend( {
 	},
 
 	wrap: function( html ) {
+<<<<<<< HEAD
 		var isFunction = jQuery.isFunction( html );
 
 		return this.each( function( i ) {
 			jQuery( this ).wrapAll( isFunction ? html.call( this, i ) : html );
+=======
+		var htmlIsFunction = isFunction( html );
+
+		return this.each( function( i ) {
+			jQuery( this ).wrapAll( htmlIsFunction ? html.call( this, i ) : html );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 		} );
 	},
 

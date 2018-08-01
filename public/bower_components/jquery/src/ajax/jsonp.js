@@ -1,9 +1,17 @@
 define( [
 	"../core",
+<<<<<<< HEAD
 	"./var/nonce",
 	"./var/rquery",
 	"../ajax"
 ], function( jQuery, nonce, rquery ) {
+=======
+	"../var/isFunction",
+	"./var/nonce",
+	"./var/rquery",
+	"../ajax"
+], function( jQuery, isFunction, nonce, rquery ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 "use strict";
 
@@ -36,7 +44,11 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 	if ( jsonProp || s.dataTypes[ 0 ] === "jsonp" ) {
 
 		// Get callback name, remembering preexisting value associated with it
+<<<<<<< HEAD
 		callbackName = s.jsonpCallback = jQuery.isFunction( s.jsonpCallback ) ?
+=======
+		callbackName = s.jsonpCallback = isFunction( s.jsonpCallback ) ?
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 			s.jsonpCallback() :
 			s.jsonpCallback;
 
@@ -87,7 +99,11 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 			}
 
 			// Call if it was a function and we have a response
+<<<<<<< HEAD
 			if ( responseContainer && jQuery.isFunction( overwritten ) ) {
+=======
+			if ( responseContainer && isFunction( overwritten ) ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 				overwritten( responseContainer[ 0 ] );
 			}
 

@@ -1,9 +1,16 @@
 define( [
 	"./core",
 	"./core/access",
+<<<<<<< HEAD
 	"./data/var/dataPriv",
 	"./data/var/dataUser"
 ], function( jQuery, access, dataPriv, dataUser ) {
+=======
+	"./core/camelCase",
+	"./data/var/dataPriv",
+	"./data/var/dataUser"
+], function( jQuery, access, camelCase, dataPriv, dataUser ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 "use strict";
 
@@ -112,7 +119,11 @@ jQuery.fn.extend( {
 						if ( attrs[ i ] ) {
 							name = attrs[ i ].name;
 							if ( name.indexOf( "data-" ) === 0 ) {
+<<<<<<< HEAD
 								name = jQuery.camelCase( name.slice( 5 ) );
+=======
+								name = camelCase( name.slice( 5 ) );
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 								dataAttr( elem, name, data[ name ] );
 							}
 						}

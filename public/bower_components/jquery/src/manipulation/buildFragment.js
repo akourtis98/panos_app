@@ -1,11 +1,19 @@
 define( [
 	"../core",
+<<<<<<< HEAD
+=======
+	"../core/toType",
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 	"./var/rtagName",
 	"./var/rscriptType",
 	"./wrapMap",
 	"./getAll",
 	"./setGlobalEval"
+<<<<<<< HEAD
 ], function( jQuery, rtagName, rscriptType, wrapMap, getAll, setGlobalEval ) {
+=======
+], function( jQuery, toType, rtagName, rscriptType, wrapMap, getAll, setGlobalEval ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 "use strict";
 
@@ -24,7 +32,11 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 		if ( elem || elem === 0 ) {
 
 			// Add nodes directly
+<<<<<<< HEAD
 			if ( jQuery.type( elem ) === "object" ) {
+=======
+			if ( toType( elem ) === "object" ) {
+>>>>>>> 0f49b6b741d7ccdaba3978328fe07a9401b1b6cd
 
 				// Support: Android <=4.0 only, PhantomJS 1 only
 				// push.apply(_, arraylike) throws on ancient WebKit
