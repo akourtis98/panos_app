@@ -1,0 +1,27 @@
+{
+  "name": "my-posts-app",
+  "version": "1.0.0",
+  "description": "You create posts, and then you view them.",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "nodemon home"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akourtis98/my-posts-app.git"
+  },
+  "author": "Alexandros Kourtis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akourtis98/my-posts-app/issues"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.6",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "1.1.4"
+  },
+  "homepage": "https://github.com/akourtis98/my-posts-app#readme"
+}
